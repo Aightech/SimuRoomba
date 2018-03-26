@@ -16,7 +16,7 @@ public class BehaviorAlea extends Behavior{
 	}
 
 	@Override
-	public Pos generateNext(Robot rob) {
+	public Pos generateNext(Robot rob, Environment e) {
 		// TODO Auto-generated method stub
 		return null;
 	}

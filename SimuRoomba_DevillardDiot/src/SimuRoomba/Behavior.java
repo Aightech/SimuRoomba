@@ -22,7 +22,7 @@ public abstract class Behavior{
 		return this.name;
 	}
 	
-	public abstract Pos generateNext(Robot rob);
+	public abstract Pos generateNext(Robot rob, Environment e);
 
 
 }
