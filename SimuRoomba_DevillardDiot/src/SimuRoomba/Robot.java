@@ -16,25 +16,39 @@ public class Robot extends OnMap{
 	
 	protected double speed;
 	protected Behavior behavior;
-	protected SensorDurt sensDurts;
+	protected Pos posInMap; 
 	protected ArrayList<SensorObst> sensObsts;
-	
+	protected SensorDurt sensDurts;
 	
 	/**
 	 * Methods : getters, setters, main
 	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-
+	
+	}
+	
+	public void setPos(Pos p)
+	{
+		this.posInMap = p;
 	}
 
 	public void setSpeed(double v)
 	{
-		
+		this.speed = v;
 	}
 	public void setBehavior(Behavior b)
 	{
+		this.behavior = b;
 		
+	}
+	public Pos getPos()
+	{
+		return this.posInMap;
+	}
+	public double getSpeed()
+	{
+		return this.speed;
 	}
 	public Behavior getBehavior()
 	{
@@ -42,7 +56,8 @@ public class Robot extends OnMap{
 	}
 	public Pos generateNext(Environment e)
 	{
-		return this.behavior.generateNext(this,e);
+		this.setPos(this.behavior.generateNext(this,e));
+		return this.posInMap;
 	}
 	
 }

@@ -46,7 +46,6 @@ public abstract class Sensor {
 	}
 	public int[] getZone()
 	{
-		
 		return this.detectZone;
 	}
 	
