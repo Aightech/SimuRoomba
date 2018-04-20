@@ -11,21 +11,44 @@ public abstract class OnMap {
 	/**
 	 * @attributs: posOnMap, shape, size, nature;
 	 */
-	public static String[] shapes = new String[] {"Circle", "Square", "Polyg"};
+	public static String[] shapes = new String[] {"Circle", "Square", "Polygon"};
 	private static String[] types = new String[] {"Durt", "Obstacle"};
-	protected Pos posOnMap = new Pos();
-	protected String shape = OnMap.shapes[0];
+	protected Pos posOnMap;
+	protected String shape;
 	protected double size; 
 	protected String nature;
 	
-	/**
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+	
+	
+	public OnMap()
+	{
+		//default position
+		this.posOnMap = new Pos(0,0);
+		//default shape
+		this.shape = OnMap.shapes[0];
 	}
 
+	public OnMap(int px, int py)
+	{
+		//specify the position
+		this.posOnMap = new Pos(px,py);
+		//default shape
+		this.shape = OnMap.shapes[0];
+	}
+	
+	public OnMap(int px, int py,String pshape)
+	{
+		//specify the position
+		this.posOnMap = new Pos(px,py);
+		
+		//default shape
+		this.shape = OnMap.shapes[0];
+		
+		//look for the shape asked in argument
+		for(int i =0; i< OnMap.shapes.length ; i++)
+			if(OnMap.shapes[i].equals(pshape))
+				this.shape = OnMap.shapes[i];
+	}
 
 	public void setPos(Pos p)
 	{
@@ -53,4 +76,6 @@ public abstract class OnMap {
 	public void setShape(String s){
 		
 	}
+	
+	
 }

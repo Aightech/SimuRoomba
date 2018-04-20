@@ -24,26 +24,15 @@ public class Simulation extends JPanel {
 	public Environment myEnv;
 	public ArrayList<Robot> myBots = new ArrayList<Robot>();
 	
+	
+	
 	public static void main(String[] args) 
 	{
-		JFrame ma_fenetre = new JFrame("Cercle rouge");
 		Simulation simulation = new Simulation();
-		simulation.setPreferredSize(new Dimension(400, 400)); // Taille de la fenetre
-	    ma_fenetre.setContentPane(simulation); // Le contenu est l'objet Move
-	    ma_fenetre.pack();
-	    ma_fenetre.setVisible(true);
 	    
 	    simulation.addBot(new Robot());
 	    
-	    while (true)
-		{
-			
-			// attend 0.01 sec
-			try  { Thread.sleep(10); }
-			catch (Exception e) {}
-			// Redessine la fenetre (appelle automatiquement entre autres m.paint())
-			simulation.repaint();
-		}
+	    simulation.start();
 
 	}
 	
@@ -72,14 +61,18 @@ public class Simulation extends JPanel {
 		    display(this.myBots.get(i),g);
 	    }
 	    
-	    
-	    
-	    
+
 	    // on rend la main
 	    g2.dispose();
 	  }
 	  
 	  
+	  
+	  /**
+	   * affiche l'objet onMap sur la fenetre
+	   * @param obj OnMap object
+	   * @param g
+	   */
 	  public void display(OnMap obj,Graphics g)
 	  {
 			Graphics2D g2 = (Graphics2D) g;
@@ -88,26 +81,52 @@ public class Simulation extends JPanel {
 			g2.setColor(Color.red);
 			if(obj.getShape()==OnMap.shapes[0])
 				g2.fillOval(pos.getX(), pos.getY(), 40, 40);
+			else if(obj.getShape()==OnMap.shapes[1])
+				g2.fillRect(pos.getX(), pos.getY(), 40, 40);
+			else if(obj.getShape()==OnMap.shapes[2])//TODO gérer les polygon
+				g2.fillRect(pos.getX(), pos.getY(), 40, 40);
+			
 			System.out.println(OnMap.shapes[0]);
 	  }
+	  
+	  
 	
 
 	 public Simulation()
 	 {
 		 setBackground(Color.white);
 		 setOpaque(true);
+		 
+		 
+		this.setPreferredSize(new Dimension(400, 400)); // Taille de la fenetre
+		
+		JFrame ma_fenetre = new JFrame("Cercle rouge");
+		ma_fenetre.setContentPane(this); // Le contenu est l'objet Move
+		ma_fenetre.pack();
+		ma_fenetre.setVisible(true);
 	 }
+	 
+	 
 	 public void setEnv(Environment e)
 	 {
 		 this.myEnv = e;
 	 }
+	 
 	 public void addBot(Robot rob)
 	 {
 		 this.myBots.add(rob);
 	 }
+	 
 	 public void start()
 	 {
-		 
+	    while (true)
+		{
+			// attend 0.01 sec
+			try  { Thread.sleep(10); }
+			catch (Exception e) {}
+			// Redessine la fenetre (appelle automatiquement entre autres m.paint())
+			this.repaint();
+		}
 	 }
 
 

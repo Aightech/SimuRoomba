@@ -22,14 +22,14 @@ public class Robot extends OnMap{
 	protected ArrayList<SensorObst> sensObsts;
 	protected SensorDurt sensDurts;
 	
+	public Robot()
+	{
+		super(20,20,"Circle");
+	}
+	
 	/**
 	 * Methods : getters, setters, main
 	 */
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-	
-	}
-	
 	public void setPos(Pos p)
 	{
 		this.posOnMap = p;

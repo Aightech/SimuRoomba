@@ -7,15 +7,21 @@ package SimuRoomba;
  */
 public class Pos {
 
-	private int x=0;
-	private int y=0;
-	/**
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+	private int x;
+	private int y;
+	
+	public Pos()
+	{
+		this.x=0;
+		this.y=0;
 	}
+	
+	public Pos(int px, int py)
+	{
+		this.x=px;
+		this.y=py;
+	}
+	
 	public int getX() {
 		return x;
 	}
