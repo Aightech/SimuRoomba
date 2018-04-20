@@ -14,7 +14,7 @@ public abstract class OnMap {
 	public static String[] shapes = new String[] {"Circle", "Square", "Polyg"};
 	private static String[] types = new String[] {"Durt", "Obstacle"};
 	protected Pos posOnMap = new Pos();
-	protected String shape = this.shapes[0];
+	protected String shape = OnMap.shapes[0];
 	protected double size; 
 	protected String nature;
 	

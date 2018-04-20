@@ -59,17 +59,26 @@ public class Simulation extends JPanel {
 	    g2.setColor(Color.white);
 	    g2.fillRect(0, 0, (int)g2.getClipBounds().getWidth(),(int) g2.getClipBounds().getHeight());
 	    
+	  //TODO on dessine l'environement 
+	    /*
+	    for(int i=0;i<this.myBots.size();i++)
+	    {
+		    display(this.myBots.get(i),g);
+	    }*/
 	    
-	    
-	    
+	    //on redessine tous les robots
 	    for(int i=0;i<this.myBots.size();i++)
 	    {
 		    display(this.myBots.get(i),g);
 	    }
 	    
+	    
+	    
+	    
 	    // on rend la main
 	    g2.dispose();
 	  }
+	  
 	  
 	  public void display(OnMap obj,Graphics g)
 	  {

@@ -7,7 +7,7 @@ package SimuRoomba;
  */
 public class Pos {
 
-	private int x=60;
+	private int x=0;
 	private int y=0;
 	/**
 	 * @param args
