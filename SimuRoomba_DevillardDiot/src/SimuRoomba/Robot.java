@@ -14,6 +14,9 @@ public class Robot extends OnMap{
 	 * @attributs: speed, behavior, sensDurt[], sensObst[]
 	 */
 	
+	 
+
+	
 	protected double speed;
 	protected Behavior behavior;
 	protected SensorDurt sensDurts;

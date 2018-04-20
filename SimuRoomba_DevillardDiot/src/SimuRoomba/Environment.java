@@ -44,6 +44,7 @@ public class Environment {
 	}
 	public Obstacle getObst(int i)
 	{
+		return null;
 		
 	}
 	public void setDurt(Durt d)
@@ -60,6 +61,7 @@ public class Environment {
 	}
 	public Durt getDurt(int i)
 	{
+		return null;
 		
 	}
 	public void setMat()
@@ -68,6 +70,7 @@ public class Environment {
 	}
 	public int[][] getMat()
 	{
+		return matEnv;
 		
 	}
 

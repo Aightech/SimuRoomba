@@ -11,10 +11,10 @@ public abstract class OnMap {
 	/**
 	 * @attributs: posOnMap, shape, size, nature;
 	 */
-	private static String[] shapes = new String[] {"Circle", "Square", "Polyg"};
+	public static String[] shapes = new String[] {"Circle", "Square", "Polyg"};
 	private static String[] types = new String[] {"Durt", "Obstacle"};
-	protected Pos posOnMap;
-	protected String shape;
+	protected Pos posOnMap = new Pos();
+	protected String shape = this.shapes[0];
 	protected double size; 
 	protected String nature;
 	
@@ -33,10 +33,12 @@ public abstract class OnMap {
 	}
 	public Pos getPos()
 	{
+		return posOnMap;
 		
 	}
 	public double getSize()
 	{
+		return size;
 		
 	}
 	public void setSize(double s)
@@ -45,6 +47,7 @@ public abstract class OnMap {
 	}
 	public String getShape()
 	{
+		return shape;
 		
 	}
 	public void setShape(String s){
