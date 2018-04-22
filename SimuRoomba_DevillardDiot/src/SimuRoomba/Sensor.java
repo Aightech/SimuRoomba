@@ -29,12 +29,9 @@ public abstract class Sensor {
 		return this.posOnRob;
 	}
 	
-	public void setFlag()
+	public void setFlag(boolean vl)
 	{
-		if(flag == true)
-			this.flag = false;
-		else
-			this.flag = true;
+		this.flag = vl;
 	}
 	public boolean getFlag()
 	{
@@ -50,4 +47,5 @@ public abstract class Sensor {
 	}
 	
 	public abstract Object getInfoSensor();
+	public abstract boolean eventDetection(Environment env);
 }

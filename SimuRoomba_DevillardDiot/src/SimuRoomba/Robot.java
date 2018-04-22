@@ -13,10 +13,7 @@ public class Robot extends OnMap{
 	/**
 	 * @attributs: speed, behavior, sensDurt[], sensObst[]
 	 */
-	
-	 
-
-	
+		
 	protected double speed;
 	protected Behavior behavior;
 	protected ArrayList<SensorObst> sensObsts;
@@ -30,10 +27,10 @@ public class Robot extends OnMap{
 	/**
 	 * Methods : getters, setters, main
 	 */
-	public void setPos(Pos p)
-	{
-		this.posOnMap = p;
-	}
+	//public void setPos(Pos p)
+	//{
+	//	this.posOnMap = p;
+	//}
 
 	public void setSpeed(double v)
 	{

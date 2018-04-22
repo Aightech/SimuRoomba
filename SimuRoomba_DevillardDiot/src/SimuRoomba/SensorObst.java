@@ -10,5 +10,6 @@ public abstract class SensorObst extends Sensor{
 	protected double dist; 
 	
 	public abstract Object getInfoSensor();
-
+	public abstract boolean eventDetection(Environment env);
+	
 }

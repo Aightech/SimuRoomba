@@ -52,7 +52,7 @@ public abstract class OnMap {
 
 	public void setPos(Pos p)
 	{
-		
+		this.posOnMap = p;
 	}
 	public Pos getPos()
 	{

@@ -7,12 +7,10 @@ package SimuRoomba;
  */
 public class BehaviorAlea extends Behavior{
 
-	/**
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+	
+	public BehaviorAlea()
+	{
+		this.setName("alea");
 	}
 
 	/**
@@ -20,10 +18,9 @@ public class BehaviorAlea extends Behavior{
 	 * Nouvelle position du robot p+1 = p + dtv
 	 */
 	@Override
-	public Pos generateNext(Robot rob, Environment e) {
-		// TODO Auto-generated method stub
-		
-		return null;
+	public Pos generateNext(Robot rob, Environment e) 
+	{
+		return Pos.move(Math.random()*rob.speed, Math.random()*rob.speed, 20);
 	}
 
 
