@@ -20,7 +20,9 @@ public class BehaviorAlea extends Behavior{
 	@Override
 	public Pos generateNext(Robot rob, Environment e) 
 	{
-		return Pos.move(Math.random()*rob.speed, Math.random()*rob.speed, 20);
+		double dl = Math.random()*rob.getSpeed() * e.getSampleTime() ;
+		double dr = Math.random()*rob.getSpeed() * e.getSampleTime() ;
+		return Pos.move(dl, dr, 20);
 	}
 
 

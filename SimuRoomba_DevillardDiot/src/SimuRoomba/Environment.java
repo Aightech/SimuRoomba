@@ -18,6 +18,7 @@ public class Environment {
 	protected ArrayList<Durt> durts;
 	protected int[] dim;
 	protected int[][] matEnv; 
+	protected double sampleTime;
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -30,6 +31,10 @@ public class Environment {
 		
 	}
 	
+	public double getSampleTime()
+	{
+		return this.sampleTime;
+	}
 	public void setObst(Obstacle o)
 	{
 		
