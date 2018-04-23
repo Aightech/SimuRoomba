@@ -17,13 +17,10 @@ public class Environment {
 	protected ArrayList<Obstacle> obstacles;
 	protected ArrayList<Durt> durts;
 	protected int[] dim;
-	protected int[][] matEnv; 
+	protected int[][] mapEnv; 
 	protected double sampleTime;
 	
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
-	}
+	
 	
 
 	public Environment(int pwidth, int pheight)
@@ -31,6 +28,9 @@ public class Environment {
 		this.dim = new int[2];
 		this.dim[0]=pwidth;
 		this.dim[1]=pheight;
+		
+		this.mapEnv = new int[pheight][pwidth];
+		
 	}
 	
 	public int getWidth(){ return this.dim[0];}
@@ -43,47 +43,27 @@ public class Environment {
 	}
 	
 	
-	public void setObst(Obstacle o)
-	{
-		
-	}
-	public void addObst(Obstacle o)
-	{
-		
-	}
-	public void delObst(int i)
-	{
-		
-	}
-	public Obstacle getObst(int i)
-	{
-		return null;
-		
-	}
-	public void setDurt(Durt d)
-	{
-		
-	}
-	public void addDurt(Durt d)
-	{
-		
-	}
-	public void delDurt(int i)
-	{
-		
-	}
-	public Durt getDurt(int i)
-	{
-		return null;
-		
-	}
+
+	public void addObst(Obstacle o){	this.obstacles.add(o);	}
+	
+	public void delObst(int i){	this.obstacles.remove(i);	}
+	
+	public Obstacle getObst(int i){	return this.obstacles.get(i);	}
+	
+
+	public void addDurt(Durt d){	this.durts.add(d);	}
+	
+	public void delDurt(int i){	this.durts.remove(i);	}
+	
+	public Durt getDurt(int i){	return this.durts.get(i);	}
+	
 	public void setMat()
 	{
 		
 	}
 	public int[][] getMat()
 	{
-		return matEnv;
+		return mapEnv;
 		
 	}
 

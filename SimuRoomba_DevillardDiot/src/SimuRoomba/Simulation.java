@@ -1,12 +1,16 @@
 package SimuRoomba;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.GridLayout;
 import java.util.ArrayList;
 import java.util.Date;
 
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -27,6 +31,13 @@ public class Simulation extends JPanel {
 	private long time;
 	
 	private Controller GUI;
+	private JPanel buttonPanel;
+	
+	private JPanel onMapPanel;
+	private JButton onMapButtons[];
+	
+	private JPanel behaviorPanel;
+	private JButton behaviorButtons[];
 	
 	
 	
@@ -57,7 +68,54 @@ public class Simulation extends JPanel {
 		this.setPreferredSize(new Dimension(this.myEnv.getWidth(), this.myEnv.getHeigth())); // Taille de la fenetre
 		
 		JFrame ma_fenetre = new JFrame("Cercle rouge");
-		ma_fenetre.setContentPane(this); // Le contenu est l'objet Move
+		
+		this.onMapPanel = new JPanel();
+		//On crée une première grille pour les nombres
+		//GridLayout(int rows, int cols)
+		GridLayout onMapGrid = new GridLayout(1,3);
+		onMapPanel.setLayout(onMapGrid);
+		//createEmptyBorder(North , West , South , East)
+		//la fonction setBorder nous permet de séparer proprement les différents panels que nous utilisons
+		onMapPanel.setBorder(BorderFactory.createEmptyBorder(6,2,2,3));
+		
+		//On crée tous les boutons des nombres
+		this.onMapButtons = new JButton[3];
+		for(int i = 0 ; i < 3; i++)
+		{
+			this.onMapButtons[i] = new JButton(String.valueOf(i));
+			this.onMapPanel.add(this.onMapButtons[i]);
+			//Pour chaque bouton on ajoute une action d'écoute
+			//this.nbButtons[i].addActionListener(this);
+		}
+		
+		
+		this.behaviorPanel = new JPanel();
+		GridLayout behaviorGrid = new GridLayout(1,3);
+		behaviorPanel.setLayout(behaviorGrid);
+		//createEmptyBorder(North , West , South , East)
+		//la fonction setBorder nous permet de séparer proprement les différents panels que nous utilisons
+		behaviorPanel.setBorder(BorderFactory.createEmptyBorder(6,2,2,3));
+		
+		//On crée tous les boutons des nombres
+		this.behaviorButtons = new JButton[3];
+		for(int i = 0 ; i < 3; i++)
+		{
+			this.behaviorButtons[i] = new JButton(String.valueOf(i));
+			this.behaviorPanel.add(this.behaviorButtons[i]);
+			//Pour chaque bouton on ajoute une action d'écoute
+			//this.nbButtons[i].addActionListener(this);
+		}
+		
+		this.buttonPanel = new JPanel();
+		GridLayout buttonGrid = new GridLayout(2,1);
+		buttonPanel.setLayout(buttonGrid);
+		
+		buttonPanel.add(onMapPanel,BorderLayout.WEST); // Le contenu est l'objet Move
+		buttonPanel.add(behaviorPanel, BorderLayout.SOUTH);
+		
+		ma_fenetre.add(this, BorderLayout.WEST);
+		ma_fenetre.add(buttonPanel, BorderLayout.EAST);
+		//
 		ma_fenetre.pack();
 		ma_fenetre.setVisible(true);
 	 }
