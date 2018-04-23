@@ -1,3 +1,5 @@
+package SimuRoomba;
+
 import java.awt.*;
 import javax.swing.*;
 

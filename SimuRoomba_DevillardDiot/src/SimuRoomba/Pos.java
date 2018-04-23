@@ -84,7 +84,7 @@ public class Pos implements Cloneable
    */
   public String toString()
   {
-    return x + " " + y + " " + theta;
+    return "x:"+(int)x + "| y:" + (int)y + "| theta:" +(int) ((180*theta)/Math.PI) + "°";
   }
   
   /**

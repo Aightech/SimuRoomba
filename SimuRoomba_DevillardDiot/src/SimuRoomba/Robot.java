@@ -23,7 +23,7 @@ public class Robot extends OnMap{
 	{
 		super(200,200,0,"Circle");
 		this.behavior = new BehaviorAlea();
-		this.speed = 50;
+		this.speed = 30;
 	}
 	
 	/**

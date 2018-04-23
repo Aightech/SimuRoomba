@@ -39,13 +39,15 @@ public class Simulation extends JPanel {
 	private JPanel behaviorPanel;
 	private JButton behaviorButtons[];
 	
+	private boolean GUIactive=false;
+	
 	
 	
 	public static void main(String[] args) 
 	{
 		Environment env = new Environment(400,400); 
 		
-		Simulation simulation = new Simulation(env);
+		Simulation simulation = new Simulation(env,false);
 	    
 	    simulation.addBot(new Robot());
 	    
@@ -55,19 +57,70 @@ public class Simulation extends JPanel {
 	
 	
 
-	 public Simulation(Environment env)
+	 public Simulation(Environment env,boolean gui)
 	 {
 		 this.myEnv = env;
 		 
-		 this.GUI = new Controller(this);
+		 if(gui)
+		 {
+			 this.GUI = new Controller(this);
+			 this.GUIactive = true;
+			 
+			 this.initGUI();
+			 
+		}
+
+		
+		
+		
+	 }
+	 
+	 
+	 public void setEnv(Environment e)
+	 {
+		 this.myEnv = e;
+	 }
+	 
+	 public void addBot(Robot rob)
+	 {
+		 this.myBots.add(rob);
+	 }
+	 
+	 public void start()
+	 {
+		 if(this.GUIactive)
+			 this.GUI.start();
 		 
+		while(true)
+		{
+			this.update();
+		}
+		 
+	 }
+	 
+	 
+	 public void update()
+	 {
+		 double dt = (System.nanoTime() - this.time) / 1e9;
+		 this.time=System.nanoTime();
+		 this.myEnv.setSampleTime(dt);
+		 
+		 System.out.print("Simulation:\t");
+		 for(int i=0;i<this.myBots.size();i++)
+			 System.out.print("robot n°"+ i + ": " + this.myBots.get(i).generateNext(this.myEnv));
+		 
+		 System.out.print("\n");
+	 }
+	 
+	 public void initGUI()
+	 {
 		 setBackground(Color.white);
 		 setOpaque(true);
 		 
 		 
 		this.setPreferredSize(new Dimension(this.myEnv.getWidth(), this.myEnv.getHeigth())); // Taille de la fenetre
 		
-		JFrame ma_fenetre = new JFrame("Cercle rouge");
+		JFrame ma_fenetre = new JFrame("Simulation Roomba");
 		
 		this.onMapPanel = new JPanel();
 		//On crée une première grille pour les nombres
@@ -84,73 +137,41 @@ public class Simulation extends JPanel {
 		{
 			this.onMapButtons[i] = new JButton(String.valueOf(i));
 			this.onMapPanel.add(this.onMapButtons[i]);
+		}
 			//Pour chaque bouton on ajoute une action d'écoute
 			//this.nbButtons[i].addActionListener(this);
-		}
-		
-		
-		this.behaviorPanel = new JPanel();
-		GridLayout behaviorGrid = new GridLayout(1,3);
-		behaviorPanel.setLayout(behaviorGrid);
-		//createEmptyBorder(North , West , South , East)
-		//la fonction setBorder nous permet de séparer proprement les différents panels que nous utilisons
-		behaviorPanel.setBorder(BorderFactory.createEmptyBorder(6,2,2,3));
-		
-		//On crée tous les boutons des nombres
-		this.behaviorButtons = new JButton[3];
-		for(int i = 0 ; i < 3; i++)
-		{
-			this.behaviorButtons[i] = new JButton(String.valueOf(i));
-			this.behaviorPanel.add(this.behaviorButtons[i]);
-			//Pour chaque bouton on ajoute une action d'écoute
-			//this.nbButtons[i].addActionListener(this);
-		}
-		
-		this.buttonPanel = new JPanel();
-		GridLayout buttonGrid = new GridLayout(2,1);
-		buttonPanel.setLayout(buttonGrid);
-		
-		buttonPanel.add(onMapPanel,BorderLayout.WEST); // Le contenu est l'objet Move
-		buttonPanel.add(behaviorPanel, BorderLayout.SOUTH);
-		
-		ma_fenetre.add(this, BorderLayout.WEST);
-		ma_fenetre.add(buttonPanel, BorderLayout.EAST);
-		//
-		ma_fenetre.pack();
-		ma_fenetre.setVisible(true);
+			this.behaviorPanel = new JPanel();
+			GridLayout behaviorGrid = new GridLayout(1,3);
+			behaviorPanel.setLayout(behaviorGrid);
+			//createEmptyBorder(North , West , South , East)
+			//la fonction setBorder nous permet de séparer proprement les différents panels que nous utilisons
+			behaviorPanel.setBorder(BorderFactory.createEmptyBorder(6,2,2,3));
+			
+			//On crée tous les boutons des nombres
+			this.behaviorButtons = new JButton[3];
+			for(int i = 0 ; i < 3; i++)
+			{
+				this.behaviorButtons[i] = new JButton(String.valueOf(i));
+				this.behaviorPanel.add(this.behaviorButtons[i]);
+				//Pour chaque bouton on ajoute une action d'écoute
+				//this.nbButtons[i].addActionListener(this);
+			}
+			
+			this.buttonPanel = new JPanel();
+			GridLayout buttonGrid = new GridLayout(2,1);
+			buttonPanel.setLayout(buttonGrid);
+			
+			buttonPanel.add(onMapPanel,BorderLayout.WEST); // Le contenu est l'objet Move
+			buttonPanel.add(behaviorPanel, BorderLayout.SOUTH);
+			
+			ma_fenetre.add(this, BorderLayout.WEST);
+			ma_fenetre.add(buttonPanel, BorderLayout.EAST);
+			//
+			ma_fenetre.pack();
+			ma_fenetre.setVisible(true);
 	 }
 	 
 	 
-	 public void setEnv(Environment e)
-	 {
-		 this.myEnv = e;
-	 }
-	 
-	 public void addBot(Robot rob)
-	 {
-		 this.myBots.add(rob);
-	 }
-	 
-	 public void start()
-	 {
-		 this.GUI.start();
-		 
-		while(true)
-		{
-			this.update();
-		}
-		 
-	 }
-	 
-	 public void update()
-	 {
-		 double dt = (System.nanoTime() - this.time) / 1e9;
-		 this.time=System.nanoTime();
-		 this.myEnv.setSampleTime(dt);
-		 this.myBots.get(0).generateNext(this.myEnv);
-		 //this.myEnv.update();
-		//this.
-	 }
 	 
 	 
 	 
