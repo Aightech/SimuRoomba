@@ -1,0 +1,865 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.2">
+  <zoom_level>6</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>276</x>
+      <y>810</y>
+      <w>270</w>
+      <h>192</h>
+    </coordinates>
+    <panel_attributes>Pos (Alexis)
+Package::OnMap
+{Some Properties}
+--
+
+- x: double
+- y: double
+- theta: double
+
+--
+
++ Pos()
++ clone(): Object
++ getX(): double
++ getY(): double
++ getTheta(): double
++ rotate(alpha: double): Pos
++ move(d_l: double, d_r: double, ecartRoues: double): Pos
++ normalize_angle(a: double): double
++ toStrin(): String
+bg=light_gray</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1248</x>
+      <y>102</y>
+      <w>132</w>
+      <h>144</h>
+    </coordinates>
+    <panel_attributes>Move
+Package::SimuRoomba
+{Some Properties}
+--
+
+- x: int
+- prev_x: int
+- y: int
+- prev_y: int
+
+--
+
++ Move()
++ moveRobot(x: int, y:int)
++ paint(g: Graphics)
+bg=light_gray</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>486</x>
+      <y>1182</y>
+      <w>198</w>
+      <h>138</h>
+    </coordinates>
+    <panel_attributes>Sensor (Tiphaine)
+Package::RoombaSensors
+
+--
+
+- posOnRob: double[3]
+- flag: boolean
+- detectZone: int[2]
+
+--
++ setFlag()
++ getFlag(): boolean 
++ setZone(dz: int[2])
++ getZone(): int[2]
+/+ getInfoSensor(): Object/
+
+
+bg=pink</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>288</x>
+      <y>1044</y>
+      <w>126</w>
+      <h>78</h>
+    </coordinates>
+    <panel_attributes>SensorBump
+Package::RoombaSensors
+
+--
+
+--
+
+*+ getInfoSensor(): Object*
+
+
+bg=pink</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>288</x>
+      <y>1128</y>
+      <w>126</w>
+      <h>78</h>
+    </coordinates>
+    <panel_attributes>SensorLaser
+Package::RoombaSensors
+
+--
+
+--
+
+*+ getInfoSensor(): Object*
+
+
+bg=pink</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>546</x>
+      <y>1152</y>
+      <w>18</w>
+      <h>42</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;50.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>408</x>
+      <y>1128</y>
+      <w>54</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>70.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>408</x>
+      <y>1104</y>
+      <w>54</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>70.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>726</x>
+      <y>642</y>
+      <w>282</w>
+      <h>114</h>
+    </coordinates>
+    <panel_attributes>Behavior (Tiphaine)
+Package::RoombaBehavior
+
+--
+
+- name: String
+
+--
+
++ setName(nm: String)
++ getName(): String 
+/+ generateNext(rob: Robot, e: Environment): Pos/
+
+
+bg=orange</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>654</x>
+      <y>786</y>
+      <w>204</w>
+      <h>78</h>
+    </coordinates>
+    <panel_attributes>BehaveAlea (Tiphaine)
+Package::RoombaBehavior
+
+--
+
+--
+
+*+ generateNext(rob, e): Pos*
+
+
+bg=orange</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>744</x>
+      <y>876</y>
+      <w>276</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>BehavePath
+Package::RoombaBehavior
+--
+
+- path: ArrayList&lt;Pos&gt;
+
+--
+
++ setPath(tab: Pos[])
++ setPath(equation: String)
++ getPath(): ArrayList&lt;Pos&gt;
+*+ generateNext(v: double, prevPos: Pos, path: Pos): Pos*
+
+
+bg=orange</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>912</x>
+      <y>786</y>
+      <w>246</w>
+      <h>78</h>
+    </coordinates>
+    <panel_attributes>BehaveWalls
+Package::RoombaBehavior
+
+--
+A CHANGER
+--
+
+*+ generateNext(v: int, prevPos: Pos, r: Room): Pos*
+
+
+bg=orange</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>810</x>
+      <y>750</y>
+      <w>18</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;60.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>972</x>
+      <y>750</y>
+      <w>18</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;60.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>876</x>
+      <y>750</y>
+      <w>18</w>
+      <h>138</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;210.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>408</x>
+      <y>252</y>
+      <w>354</w>
+      <h>168</h>
+    </coordinates>
+    <panel_attributes>Robot (Tiphaine)
+Package::OnMap
+
+--
+
+- speed: double
+- behavior: Behavior
+- sensDurt: SensorDurt
+- sensObst: ArrayList&lt;SensorObst&gt;
+
+--
+
++ setSpeed(v: double)
++ getSpeed(): double
++ setBehavior(b: Behavior)
++ getBehavior(): Behavior 
++ generateNext(e: Environment): Pos
+
+
+bg=blue</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>606</x>
+      <y>1152</y>
+      <w>18</w>
+      <h>42</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;50.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>264</x>
+      <y>582</y>
+      <w>198</w>
+      <h>192</h>
+    </coordinates>
+    <panel_attributes>OnMap (Alexis)
+Package::OnMap
+
+--
+
+_- shapes: String[3]_
+_- types: String[2]_
+- posOnMap: Pos
+- shape: String
+- size: double
+- nature: String
+
+--
+
++ setPos(p:Pos)
++ getPos():Pos
++ getSize(): double
++ setSize(s: double)
++ getShape(): String
++ setShape(s: String)
+
+bg=red</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>198</x>
+      <y>504</y>
+      <w>102</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>Durt
+Package::OnMap
+
+--
+
+bg=red</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>306</x>
+      <y>504</y>
+      <w>102</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>Obstacle
+Package::OnMap
+
+--
+
+
+bg=red</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>198</x>
+      <y>252</y>
+      <w>198</w>
+      <h>216</h>
+    </coordinates>
+    <panel_attributes>Environment (Alexis)
+Package::OnMap
+--
+
+- obstacles: ArrayList&lt;Obstacle&gt;
+- durts: ArrayList&lt;Durt&gt;
+- dim: int[2]
+- matEnv: int[][]
+
+--
+
++ Environment()
++ setObst(o: Obstacle)
++ addObst(o: Obstacle)
++ delObst(i: int)
++ getObst(i: int): Obstacle
++ setDurt(d: Durt)
++ addDurt(d: Durt)
++ delDurt(i: int)
++ getDurt(i: int): Durt
++ setMat()
++ getMat(): int[][]
+
+
+
+bg=cyan</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>282</x>
+      <y>558</y>
+      <w>18</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;40.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>342</x>
+      <y>558</y>
+      <w>18</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;40.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>504</x>
+      <y>414</y>
+      <w>18</w>
+      <h>408</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
+
+1
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;660.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>282</x>
+      <y>462</y>
+      <w>18</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
+
+n
+
+</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;70.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>312</x>
+      <y>462</y>
+      <w>18</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
+
+n
+
+</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;70.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>402</x>
+      <y>768</y>
+      <w>18</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
+1
+</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;70.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>732</x>
+      <y>396</y>
+      <w>18</w>
+      <h>276</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
+
+
+
+
+
+
+
+
+
+
+
+1  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</panel_attributes>
+    <additional_attributes>10.0;40.0;10.0;410.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>636</x>
+      <y>414</y>
+      <w>18</w>
+      <h>678</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
+n
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;1110.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>450</x>
+      <y>1080</y>
+      <w>126</w>
+      <h>78</h>
+    </coordinates>
+    <panel_attributes>SensorObst
+Package::RoombaSensors
+
+--
+
+- dist: double
+
+bg=pink</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>582</x>
+      <y>1080</y>
+      <w>144</w>
+      <h>78</h>
+    </coordinates>
+    <panel_attributes>SensorDurt
+Package::RoombaSensors
+
+--
+
+--
+
+*+ getInfoSensor(): boolean*
+
+
+bg=pink</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>564</x>
+      <y>414</y>
+      <w>18</w>
+      <h>678</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
+n
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;1110.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>438</x>
+      <y>414</y>
+      <w>18</w>
+      <h>180</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;280.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>648</x>
+      <y>600</y>
+      <w>516</w>
+      <h>402</h>
+    </coordinates>
+    <panel_attributes>/Package::RoombaBehavior/
+
+layer=-1
+bg=orange</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>276</x>
+      <y>1038</y>
+      <w>462</w>
+      <h>300</h>
+    </coordinates>
+    <panel_attributes>/Package:: RoombaSensors/
+
+layer=-2
+bg=pink</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>144</x>
+      <y>0</y>
+      <w>1050</w>
+      <h>1362</h>
+    </coordinates>
+    <panel_attributes>/Package::SimuRoomba/
+
+layer=-2</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>798</x>
+      <y>252</y>
+      <w>354</w>
+      <h>288</h>
+    </coordinates>
+    <panel_attributes>GraphicInterface
+Package::OnMap
+
+--
+
+--
+
+
+
+
+bg=dark_gray</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>276</x>
+      <y>30</y>
+      <w>804</w>
+      <h>174</h>
+    </coordinates>
+    <panel_attributes>Simulation (à deux)
+Package::SimuRoomba
+
+--
+
+ - myEnv: Environment
+ - mybots: Robot[]
+ - graphicInterface: boolean
+
+--
+
+ + Simulation()
+ + addEnv(e: Environmnent)
+ + addBot(rob: Robot)
+ + start()
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>336</x>
+      <y>198</y>
+      <w>18</w>
+      <h>66</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
+
+1
+
+</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;90.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>468</x>
+      <y>198</y>
+      <w>18</w>
+      <h>66</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
+
+n
+
+</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;90.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>384</x>
+      <y>630</y>
+      <w>60</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>Forms *3</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>

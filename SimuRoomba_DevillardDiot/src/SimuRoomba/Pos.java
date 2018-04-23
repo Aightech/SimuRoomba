@@ -28,6 +28,7 @@ public class Pos implements Cloneable
   public double getY() { return y; }
   public double getTheta() { return theta; }
   public Object clone() { return new Pos(x, y, theta); }
+  
 
   /**
    * Fait tourner une posture autour de l'origine du repere
@@ -56,20 +57,20 @@ public class Pos implements Cloneable
     double alpha = (dr - dl) / ecartRoues;
     Pos p = null;
     if (alpha > 1e-20  || alpha < -1e-20)
-      {
-	double r = (dl / alpha) +  ecartRoues / 2;
-	double dx = (Math.cos(alpha) - 1) * r;
-	double dy = Math.sin(alpha) * r;
-	p = new Pos(dx, dy, alpha);
-	p.rotate(this.getTheta() - Math.PI / 2);
-	p.theta = alpha;
-      }
+    {
+		double r = (dl / alpha) +  ecartRoues / 2;
+		double dx = (Math.cos(alpha) - 1) * r;
+		double dy = Math.sin(alpha) * r;
+		p = new Pos(dx, dy, alpha);
+		p.rotate(this.getTheta() - Math.PI / 2);
+		p.theta = alpha;
+    }
     else
-      {
-	p = new Pos(dl * Math.cos(this.getTheta()),
-			dl * Math.sin(this.getTheta()),
-			0);
-      }
+    {
+		p = new Pos(dl * Math.cos(this.getTheta()),
+				dl * Math.sin(this.getTheta()),
+				0);
+    }
 
     this.x += p.x;
     this.y += p.y;

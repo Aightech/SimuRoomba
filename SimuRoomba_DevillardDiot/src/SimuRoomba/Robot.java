@@ -21,7 +21,9 @@ public class Robot extends OnMap{
 	
 	public Robot()
 	{
-		super(20,20,"Circle");
+		super(200,200,0,"Circle");
+		this.behavior = new BehaviorAlea();
+		this.speed = 50;
 	}
 	
 	/**
@@ -55,7 +57,7 @@ public class Robot extends OnMap{
 	}
 	public Pos generateNext(Environment e)
 	{
-		this.setPos(this.behavior.generateNext(this,e));
+		this.posOnMap = this.behavior.generateNext(this,e);
 		return this.posOnMap;
 	}
 	

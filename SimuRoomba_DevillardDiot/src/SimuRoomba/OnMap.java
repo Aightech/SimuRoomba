@@ -23,23 +23,25 @@ public abstract class OnMap {
 	public OnMap()
 	{
 		//default position
-		this.posOnMap = new Pos(0,0);
+		this.posOnMap = new Pos(0,0,0);
 		//default shape
 		this.shape = OnMap.shapes[0];
+		this.size = 40;
 	}
 
-	public OnMap(int px, int py)
+	public OnMap(int px, int py, int ptheta)
 	{
 		//specify the position
-		this.posOnMap = new Pos(px,py);
+		this.posOnMap = new Pos(px,py,ptheta);
 		//default shape
 		this.shape = OnMap.shapes[0];
+		this.size = 40;
 	}
 	
-	public OnMap(int px, int py,String pshape)
+	public OnMap(int px, int py, int ptheta, String pshape)
 	{
 		//specify the position
-		this.posOnMap = new Pos(px,py);
+		this.posOnMap = new Pos(px,py,ptheta);
 		
 		//default shape
 		this.shape = OnMap.shapes[0];
@@ -48,6 +50,7 @@ public abstract class OnMap {
 		for(int i =0; i< OnMap.shapes.length ; i++)
 			if(OnMap.shapes[i].equals(pshape))
 				this.shape = OnMap.shapes[i];
+		this.size = 40;
 	}
 
 	public void setPos(Pos p)
@@ -66,7 +69,7 @@ public abstract class OnMap {
 	}
 	public void setSize(double s)
 	{
-		
+		this.size = s;
 	}
 	public String getShape()
 	{

@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -23,12 +24,17 @@ public class Simulation extends JPanel {
 	public boolean graphicInterface;
 	public Environment myEnv;
 	public ArrayList<Robot> myBots = new ArrayList<Robot>();
+	private long time;
+	
+	private Controller GUI;
 	
 	
 	
 	public static void main(String[] args) 
 	{
-		Simulation simulation = new Simulation();
+		Environment env = new Environment(400,400); 
+		
+		Simulation simulation = new Simulation(env);
 	    
 	    simulation.addBot(new Robot());
 	    
@@ -36,7 +42,81 @@ public class Simulation extends JPanel {
 
 	}
 	
-	  /**
+	
+
+	 public Simulation(Environment env)
+	 {
+		 this.myEnv = env;
+		 
+		 this.GUI = new Controller(this);
+		 
+		 setBackground(Color.white);
+		 setOpaque(true);
+		 
+		 
+		this.setPreferredSize(new Dimension(this.myEnv.getWidth(), this.myEnv.getHeigth())); // Taille de la fenetre
+		
+		JFrame ma_fenetre = new JFrame("Cercle rouge");
+		ma_fenetre.setContentPane(this); // Le contenu est l'objet Move
+		ma_fenetre.pack();
+		ma_fenetre.setVisible(true);
+	 }
+	 
+	 
+	 public void setEnv(Environment e)
+	 {
+		 this.myEnv = e;
+	 }
+	 
+	 public void addBot(Robot rob)
+	 {
+		 this.myBots.add(rob);
+	 }
+	 
+	 public void start()
+	 {
+		 this.GUI.start();
+		 
+		while(true)
+		{
+			this.update();
+		}
+		 
+	 }
+	 
+	 public void update()
+	 {
+		 double dt = (System.nanoTime() - this.time) / 1e9;
+		 this.time=System.nanoTime();
+		 this.myEnv.setSampleTime(dt);
+		 this.myBots.get(0).generateNext(this.myEnv);
+		 //this.myEnv.update();
+		//this.
+	 }
+	 
+	 
+	 
+	 public class Controller extends Thread {
+
+	        private Simulation sim;
+
+	        public Controller(Simulation model) {
+	            this.sim = model;
+	        }
+
+	        @Override
+	        public void run() {
+	            while (true) 
+	            {
+	                try {Thread.sleep(10);} 
+	                catch (InterruptedException ex) {}
+	                sim.repaint();
+	            }
+	        }
+
+	    }
+	 
+	 /**
 	   * Fonction appelee automatiquement quand le JPanel est (re)dessine a l'ecran
 	   */
 	  public void paint(Graphics g) {
@@ -80,54 +160,14 @@ public class Simulation extends JPanel {
 			// on dessin un disque rouge
 			g2.setColor(Color.red);
 			if(obj.getShape()==OnMap.shapes[0])
-				g2.fillOval(pos.getX(), pos.getY(), 40, 40);
+				g2.fillOval((int)pos.getX(),(int) pos.getY(),(int)obj.getSize() , (int)obj.getSize());
 			else if(obj.getShape()==OnMap.shapes[1])
-				g2.fillRect(pos.getX(), pos.getY(), 40, 40);
+				g2.fillRect((int)pos.getX(),(int) pos.getY(), (int)obj.getSize(), (int)obj.getSize());
 			else if(obj.getShape()==OnMap.shapes[2])//TODO gérer les polygon
-				g2.fillRect(pos.getX(), pos.getY(), 40, 40);
+				g2.fillRect((int)pos.getX(),(int) pos.getY(), (int)obj.getSize(), (int)obj.getSize());
 			
-			System.out.println(OnMap.shapes[0]);
+			
 	  }
-	  
-	  
-	
-
-	 public Simulation()
-	 {
-		 setBackground(Color.white);
-		 setOpaque(true);
-		 
-		 
-		this.setPreferredSize(new Dimension(400, 400)); // Taille de la fenetre
-		
-		JFrame ma_fenetre = new JFrame("Cercle rouge");
-		ma_fenetre.setContentPane(this); // Le contenu est l'objet Move
-		ma_fenetre.pack();
-		ma_fenetre.setVisible(true);
-	 }
-	 
-	 
-	 public void setEnv(Environment e)
-	 {
-		 this.myEnv = e;
-	 }
-	 
-	 public void addBot(Robot rob)
-	 {
-		 this.myBots.add(rob);
-	 }
-	 
-	 public void start()
-	 {
-	    while (true)
-		{
-			// attend 0.01 sec
-			try  { Thread.sleep(10); }
-			catch (Exception e) {}
-			// Redessine la fenetre (appelle automatiquement entre autres m.paint())
-			this.repaint();
-		}
-	 }
 
 
 }

@@ -26,15 +26,23 @@ public class Environment {
 	}
 	
 
-	public Environment()
+	public Environment(int pwidth, int pheight)
 	{
-		
+		this.dim = new int[2];
+		this.dim[0]=pwidth;
+		this.dim[1]=pheight;
 	}
 	
-	public double getSampleTime()
+	public int getWidth(){ return this.dim[0];}
+	public int getHeigth(){ return this.dim[1];}
+	public double getSampleTime(){return this.sampleTime;}
+	
+	public void setSampleTime(double dt)
 	{
-		return this.sampleTime;
+		this.sampleTime = dt;
 	}
+	
+	
 	public void setObst(Obstacle o)
 	{
 		
