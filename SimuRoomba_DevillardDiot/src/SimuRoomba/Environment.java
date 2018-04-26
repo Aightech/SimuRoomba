@@ -31,6 +31,9 @@ public class Environment {
 		
 		this.mapEnv = new int[pheight][pwidth];
 		
+		this.obstacles = new ArrayList<Obstacle>();
+		this.durts = new ArrayList<Durt>();
+		
 	}
 	
 	public int getWidth(){ return this.dim[0];}
@@ -50,12 +53,16 @@ public class Environment {
 	
 	public Obstacle getObst(int i){	return this.obstacles.get(i);	}
 	
+	public int nbObst(){	return this.obstacles.size();	}
+	
 
 	public void addDurt(Durt d){	this.durts.add(d);	}
 	
 	public void delDurt(int i){	this.durts.remove(i);	}
 	
-	public Durt getDurt(int i){	return this.durts.get(i);	}
+	public Durt getDurt(int i){	return this.durts.get(i);	}	
+	
+	public int nbDurt(){	return this.durts.size();	}
 	
 	public void setMat()
 	{

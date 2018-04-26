@@ -1,5 +1,7 @@
 package SimuRoomba;
 
+import java.awt.Color;
+
 
 /**
  * Abstract Class OnMap for all objects visible on the map
@@ -17,6 +19,7 @@ public abstract class OnMap {
 	protected String shape;
 	protected double size; 
 	protected String nature;
+	protected Color color=Color.pink;
 	
 	
 	

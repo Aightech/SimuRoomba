@@ -1,5 +1,6 @@
 package SimuRoomba;
 
+import java.awt.Color;
 import java.util.ArrayList;
 
 
@@ -24,6 +25,7 @@ public class Robot extends OnMap{
 		super(200,200,0,"Circle");
 		this.behavior = new BehaviorAlea();
 		this.speed = 30;
+		this.color = Color.red;
 	}
 	
 	/**
