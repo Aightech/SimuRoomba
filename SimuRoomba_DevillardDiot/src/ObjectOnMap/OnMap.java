@@ -1,4 +1,4 @@
-package SimuRoomba;
+package ObjectOnMap;
 
 import java.awt.Color;
 
@@ -78,15 +78,10 @@ public abstract class OnMap {
 	 * Methods : getters, setters, main
 	 */
 	public void setPos(Pos p){	this.posOnMap = p;	}
-	
 	public Pos getPos(){	return posOnMap;	}
-	
 	public double getSize(){	return size;	}
-	
 	public void setSize(double s){	this.size = s;	}
-	
 	public String getShape(){	return shape;	}
-	
 	public void setShape(String s){	this.shape = s;	}
 	
 }

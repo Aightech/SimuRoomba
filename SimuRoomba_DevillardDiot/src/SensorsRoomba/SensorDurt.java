@@ -1,4 +1,11 @@
-package SimuRoomba;
+package SensorsRoomba;
+
+
+import ObjectOnMap.Durt;
+import ObjectOnMap.Robot;
+import SimuRoomba.Environment;
+
+//TODO finir la class SensorDurt eventDetection pour les différentes formes
 
 /**
  * Class which represents dust sensors on the robot

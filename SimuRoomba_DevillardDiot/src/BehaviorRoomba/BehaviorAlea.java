@@ -1,13 +1,18 @@
-package SimuRoomba;
+package BehaviorRoomba;
+
+import ObjectOnMap.Pos;
+import ObjectOnMap.Robot;
+import SimuRoomba.Environment;
 
 /**
  * Behavior random : the robot can go in any direction
  * @author Alexis Devillard and Tiphaine Diot
- *
+ * Attribute : name from the Behavior abstract class
+ * Functions in the Behavior Class : sBehaviorAlea() (Constructor) and generateNext()
  */
 public class BehaviorAlea extends Behavior{
 
-	
+	//Main, useful to control correctly how works the class
 	public static void main(String[] args)
 	{
 		Robot r = new Robot();
@@ -22,19 +27,19 @@ public class BehaviorAlea extends Behavior{
 			env.setSampleTime(dt);
 			System.out.println("robot : " + r.generateNext(env));
 			i++;
-		}
-		
-		
+		}	
 	}
 	
+	//Constructor
 	public BehaviorAlea()
 	{
 		this.setName("alea");
 	}
 
 	/**
-	 * L'environnement connait la position du robot et le robot a une vitesse
-	 * Nouvelle position du robot p+1 = p + dtv
+	 * Function which generate a new random position from the last one 
+	 * Using move from the class Pos, the function move the robot thank to 2 random speed (from 0 to max speed possible) for both wheels
+	 * The function make sure that the robot is not going to bump something
 	 */
 	@Override
 	public Pos generateNext(Robot rob, Environment env) 
@@ -42,14 +47,13 @@ public class BehaviorAlea extends Behavior{
 		Pos lastPos = rob.getPos().clone();
 		Pos newPos = rob.getPos();
 		
-		
-		boolean bumping = false;
+		boolean bumping = false; //Flag for bumping on something
 		//double lastSpeed[] = new double[] {rob.getSpeed(0),rob.getSpeed(1)};
 		
 		do{ 
 			rob.getPos().set(lastPos.getX(),lastPos.getY(),lastPos.getTheta());
 			double v=0;
-			for(int i=0;i<2;i++)
+			for(int i=0;i<2;i++) //Generate a random speed for both wheels
 			{
 				//rob.setSpeed(i,lastSpeed[i]);
 				v=rob.getSpeed(i) + Math.random()-0.5;
@@ -57,23 +61,15 @@ public class BehaviorAlea extends Behavior{
 				rob.setSpeed(i, v);
 			}
 				
-			
-			
 			newPos = rob.move(env.getSampleTime());
-			for(int i = 0 ; i < rob.nbObstSensor() ; i++)
+			for(int i = 0 ; i < rob.nbObstSensor() ; i++) //Check all the obstacles sensors
 			{
-				bumping = rob.getObstSensor(i).eventDetection(env);
+				bumping = rob.getObstSensor(i).eventDetection(env); 
 				
 				if(bumping)
 					break;
 			}
-			
-		}while(bumping);
-		
-		
-		return newPos;
+		}while(bumping); //if the generate position raise the flag we continue 
+		return newPos; //Return the pos which doesn't raise the flag
 	}
-
-
-
 }

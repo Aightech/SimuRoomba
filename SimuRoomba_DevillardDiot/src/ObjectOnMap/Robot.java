@@ -1,13 +1,21 @@
-package SimuRoomba;
+package ObjectOnMap;
 
 import java.awt.Color;
 import java.util.ArrayList;
 
+import SensorsRoomba.SensorBump;
+import SensorsRoomba.SensorDurt;
+import SensorsRoomba.SensorObst;
+import SimuRoomba.Environment;
+
+import BehaviorRoomba.Behavior;
+import BehaviorRoomba.BehaviorAlea;
 
 /**
  * Class which represents the Roomba
  * @author Alexis Devillard and Tiphaine Diot
- *
+ * Attributes : speed[], maxSpeed, wheelSize, Behavior, sensObsts[], sensDurts[]
+ * Functions : Constructor, move and getters/setters
  */
 public class Robot extends OnMap{
 	
@@ -81,32 +89,21 @@ public class Robot extends OnMap{
 			x += vm*Math.sin(theta)*dt;
 			y += vm*Math.cos(theta)*dt;
 		}
-			
-		
 		return this.posOnMap.set(x, y, theta);
 	}
 	
 	/**
 	 * Methods : getters, setters, main
 	 */
-	public void setPos(Pos p){	this.posOnMap = p;	}
-
-	public int nbObstSensor(){	return sensObsts.size();	}	
-	
-	public SensorObst getObstSensor(int i){	return sensObsts.get(i);	}	
-	
+	public void setPos(Pos p){		this.posOnMap = p;	}
+	public int nbObstSensor(){		return sensObsts.size();	}	
+	public SensorObst getObstSensor(int i){		return sensObsts.get(i);	}	
 	public void setSpeed(int i,double v){	this.speed[i] = v;	}
-	
 	public void setBehavior(Behavior b){	this.behavior = b;	}
-	
 	public Pos getPos(){	return this.posOnMap;	}
-	
 	public double getSpeed(int i){	return this.speed[i];	}
-	
 	public double getMaxSpeed(){	return this.maxSpeed;	}
-	
 	public Behavior getBehavior(){	return this.behavior;}
-	
 	public Pos generateNext(Environment e)
 	{
 		this.posOnMap = this.behavior.generateNext(this,e);

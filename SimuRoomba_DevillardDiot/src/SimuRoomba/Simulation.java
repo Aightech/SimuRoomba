@@ -17,11 +17,19 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import ObjectOnMap.Durt;
+import ObjectOnMap.Obstacle;
+import ObjectOnMap.OnMap;
+import ObjectOnMap.Pos;
+import ObjectOnMap.Robot;
+
 
 /**
  * The Simulation class
  * @author Alexis Devillard and Tiphaine Diot
- *
+ * Attributes : serialVersionUID, graphicInterface, myEnv, myBots[], time, GUI, ma_fenetre, buttonPanel, onMapPanel, onMapButtons[], onMapItem[]
+ * 	behaviorPanel, behaviorBUttons[], behaviorType[], GUIactive
+ * Functions : getters/setters, addOnMap(), addBots(), start(), update(), initGUI(), display(), displaySensors(), actionPerformed
  */
 public class Simulation extends JPanel implements ActionListener{
 
@@ -61,7 +69,6 @@ public class Simulation extends JPanel implements ActionListener{
 	 * Some attributes for interactive GUI
 	 */
 	private JPanel buttonPanel;
-	
 	private JPanel onMapPanel;
 	private JButton onMapButtons[];
 	private String onMapItem[] = {"Robot","Obstacle","Durt"};
@@ -92,11 +99,11 @@ public class Simulation extends JPanel implements ActionListener{
 	}
 	
 	
-/**
- * Costructor
- * @param env Environement of the simualtion
- * @param gui True for a graphical mode, false for a terminal mode
- */
+	 /**
+	 * Constructor
+	 * @param env Environement of the simualtion
+	 * @param gui True for a graphical mode, false for a terminal mode
+	 */
 	 public Simulation(Environment env,boolean gui)
 	 {
 		 this.myEnv = env;
@@ -108,7 +115,7 @@ public class Simulation extends JPanel implements ActionListener{
 		}
 	 }
 	 
-	 
+	 //Setter for the environment
 	 public void setEnv(Environment e){	this.myEnv = e;	}
 	 
 	 /**
@@ -131,24 +138,28 @@ public class Simulation extends JPanel implements ActionListener{
 		 }
 	 }
 	 
-	 
+	 //Setter for the behavior
 	 public void setBehavior(int j)
 	 {
 		 switch(j)
 		 {
-		 case 0:
-		 {
-			 for(int i=0;i<this.myBots.size();i++)
-		    {
-			    this.myBots.get(i).setBehavior(new BehaviorAlea());
-		    }
-		 }break;
+		 	case 0:
+		 	{
+		 		for(int i=0;i<this.myBots.size();i++)
+		 		{
+		 			this.myBots.get(i).setBehavior(new BehaviorAlea());
+		 		}
+		 	}break;
 			 
 		 }
 	 }
 	 
+	 //Add a robot on the list
 	 public void addBot(Robot rob){	this.myBots.add(rob);	}
 	 
+	 /**
+	  * Function start()
+	  */
 	 public void start()
 	 {
 		 if(this.GUIactive)
@@ -162,7 +173,9 @@ public class Simulation extends JPanel implements ActionListener{
 		 
 	 }
 	 
-	 
+	 /**
+	  * Function update() the environment
+	  */
 	 public void update()
 	 {
 		 double dt = (System.nanoTime() - this.time) / 1e9;
@@ -176,6 +189,9 @@ public class Simulation extends JPanel implements ActionListener{
 		 System.out.print("\n");
 	 }
 	 
+	 /**
+	  * Function initGUI() 
+	  */
 	 public void initGUI()
 	 {
 			 setBackground(Color.white);
@@ -238,7 +254,10 @@ public class Simulation extends JPanel implements ActionListener{
 	 
 	 
 	 
-	 
+	 /**
+	  * Class Controller in the Simulation
+	  * 
+	  */
 	 public class Controller extends Thread {
 
 	        private Simulation sim;
@@ -256,8 +275,7 @@ public class Simulation extends JPanel implements ActionListener{
 	                sim.repaint();
 	            }
 	        }
-
-	    }
+	   }
 	 
 	 /**
 	   * Fonction appelee automatiquement quand le JPanel est (re)dessine a l'ecran
@@ -305,6 +323,9 @@ public class Simulation extends JPanel implements ActionListener{
 			
 			g2.setColor(obj.color);
 			int size = (int)obj.getSize();
+			
+			//Ici le code est modulable, il suffit de rajouter une forme et de rajouter un elseif ATTENTION il faut modifier le code à d'autres endroits également
+			
 			if(obj.getShape()==OnMap.shapes[0])//circle
 				g2.fillOval((int)pos.getX()-size/2,(int) pos.getY()-size/2,size,size);
 			else if(obj.getShape()==OnMap.shapes[1])//square
@@ -313,8 +334,10 @@ public class Simulation extends JPanel implements ActionListener{
 				g2.fillRect((int)pos.getX(),(int) pos.getY(), (int)obj.getSize(), (int)obj.getSize());
 			
 			
+			
 	  }
 	  
+	  //TODO commente un peu tes fonctions de simulation je les comprends as
 	  public void displaySensor(Robot rob,Graphics g)
 	  {
 		  Graphics2D g2 = (Graphics2D) g;

@@ -1,4 +1,8 @@
-package SimuRoomba;
+package SensorsRoomba;
+
+import ObjectOnMap.Obstacle;
+import ObjectOnMap.Robot;
+import SimuRoomba.Environment;
 
 /**
  * A bump sensor (SensorObst) detected an obstacle by touching it : distance returned is 0

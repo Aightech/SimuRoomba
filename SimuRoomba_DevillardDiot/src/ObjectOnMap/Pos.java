@@ -1,4 +1,4 @@
-package SimuRoomba;
+package ObjectOnMap;
 
 /**
  * Code Fourni pour se déplacer 
