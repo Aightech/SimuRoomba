@@ -10,21 +10,18 @@ public class SensorBump extends SensorObst{
 	/**
 	 * The classic constructor places the sensor in the front of the robot. 
 	 */
+	
 	public SensorBump(Robot r)
 	{
-		for(int i = 0; i < 2; i++)
-			this.detectZone[i] = 0; //the bump sensor detects one obstacle by touching it.
-		this.posOnRob[0] = 10; //Pos selon le repère du robot, X dans l'axe des roues et Y perpendiculaire
-		this.posOnRob[1] = 0; 
-		this.posOnRob[2] = 0; //The angle of view of the sensor is null for an basic sensor bump - aligned with the angle of the robot
+		super((double)0,r.getSize(),(double)0);	
+		this.myRob = r;
+		this.posOnRob.set((double)0,r.getSize()/2,(double)0);
 	}
 	public SensorBump(Robot r, double anglOnRob)
 	{
-		for(int i = 0; i < 2; i++)
-			this.detectZone[i] = 0; //the bump sensor detects one obstacle by touching it.
-		this.posOnRob[0] = 10*Math.cos(anglOnRob); //Pos selon le repère du robot, X dans l'axe des roues et Y perpendiculaire
-		this.posOnRob[1] = 10*Math.sin(anglOnRob); 
-		this.posOnRob[2] = anglOnRob; //The angle of view of the sensor is null for an basic sensor bump - aligned with the angle of the robot
+		super(r.getSize()*Math.cos(anglOnRob),r.getSize()*Math.sin(anglOnRob),anglOnRob);	
+		this.myRob = r;
+		this.posOnRob.set(r.getSize()/2*Math.sin(anglOnRob),r.getSize()/2*Math.cos(anglOnRob),anglOnRob);
 		
 	}
 	public Object getInfoSensor()
@@ -38,30 +35,37 @@ public class SensorBump extends SensorObst{
 
 	public boolean eventDetection(Environment env)
 	{
-		boolean val = false;
-		//Wall case
-		if( this.posOnRob[0] == 0 || this.posOnRob[1] == 0 || this.posOnRob[0] == env.dim[0] || this.posOnRob[1] == env.dim[1] )
-			val = true; //We are at the edge of the environment : we are touching a wall
+		return isBumping(this.myRob,env);
+	}
+	
+	public boolean isBumping(Robot rob, Environment env)
+	{
+		double xr = rob.getPos().getX();
+		double yr = rob.getPos().getY();
+		double thetar = rob.getPos().getTheta();
 		
-		//Other obstacles case
-		for(Obstacle o: env.obstacles)
+		double dx = this.getPos().getX();
+		double dy = this.getPos().getY();
+		
+		double ptx=0;
+		double pty =0;
+		double range = Math.toRadians(40);
+		double inc = Math.toRadians(0.5);
+		
+		for(double dO =-range; dO < range ; dO += inc)
 		{
-			//We have to take in consideration the size/shape of the osbtacle
-			switch (o.getShape())
-			{
-				case "Circle": 
-					break;
-				case "Square":
-					break;        
-				case "Polygon":
-					break;        
-
-			  default:
-				  val = false;
-			}
+			ptx = xr + dx * Math.cos(thetar+dO) + dy*Math.sin(thetar+dO);
+			pty = yr - dx * Math.sin(thetar+dO) + dy*Math.cos(thetar+dO);
+			if(ptx < 0 || pty < 0 || ptx > env.getWidth()|| pty >env.getHeigth())
+				return true;
+			
+			for(int i=0;i<env.nbObst();i++)
+		    {
+				Obstacle obst=env.getObst(i);
+				if(Math.hypot(ptx - obst.getPos().getX(), pty - obst.getPos().getY()) < obst.getSize()/2)
+					return true;
+		    }
 		}
-		
-		this.setFlag(val);
-		return val;
+		return false;
 	}
 }

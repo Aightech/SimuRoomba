@@ -14,17 +14,19 @@ public class SensorDurt extends Sensor{
 	
 	public SensorDurt(Robot r)
 	{
-		this.detectZone[0] = 5; //rayon de détection de 5 cm autour de son centre
+		/*this.detectZone[0] = 5; //rayon de détection de 5 cm autour de son centre
 		this.posOnRob[0] = 15; //Pos selon le repère du robot, X dans l'axe des roues et Y perpendiculaire
 		this.posOnRob[1] = 0; 
 		this.posOnRob[2] = 0; //The angle of view of the sensor is null for an basic sensor bump - aligned with the angle of the robot
+	*/
 	}
 	public SensorDurt(Robot r, double anglOnRob, int detectRange, double distFromCtr)
 	{
-		this.detectZone[0] = detectRange; //the bump sensor detects one obstacle by touching it.
+		/*this.detectZone[0] = detectRange; //the bump sensor detects one obstacle by touching it.
 		this.posOnRob[0] = distFromCtr*Math.cos(anglOnRob); //Pos selon le repère du robot, X dans l'axe des roues et Y perpendiculaire
 		this.posOnRob[1] = distFromCtr*Math.sin(anglOnRob); 
 		this.posOnRob[2] = anglOnRob; //The angle of view of the sensor is null for an basic sensor bump - aligned with the angle of the robot
+	*/
 	}
 	
 	@Override

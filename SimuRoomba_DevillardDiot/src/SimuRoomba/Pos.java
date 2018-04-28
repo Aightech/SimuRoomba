@@ -23,11 +23,29 @@ public class Pos implements Cloneable
     this.y = y;
     this.theta = theta;
   }
+  
+  public Pos set(double x, double y, double theta)
+  {
+    this.x = x;
+    this.y = y;
+    this.theta = theta;
+    return this;
+  }
   // Accesseurs
   public double getX() { return x;  }
   public double getY() { return y; }
   public double getTheta() { return theta; }
-  public Object clone() { return new Pos(x, y, theta); }
+  public double get(int i)
+  { 
+	  if(i==0)
+		  return x;
+	  else if(i==1)
+		  return y;
+	  else if(i==2)
+		  return theta;
+	  else return -1;
+  }
+  public Pos clone() { return new Pos(x, y, theta); }
   
 
   /**
@@ -61,7 +79,7 @@ public class Pos implements Cloneable
 		double r = (dl / alpha) +  ecartRoues / 2;
 		double dx = (Math.cos(alpha) - 1) * r;
 		double dy = Math.sin(alpha) * r;
-		p = new Pos(dx, dy, alpha);
+		p = new Pos(dy, dx, alpha);
 		p.rotate(this.getTheta() - Math.PI / 2);
 		p.theta = alpha;
     }
@@ -79,12 +97,15 @@ public class Pos implements Cloneable
     return this;
   }
   
+  
+  
+  
   /**
    * Methode toString: permet d'afficher la posture
    */
   public String toString()
   {
-    return "x:"+(int)x + "| y:" + (int)y + "| theta:" +(int) ((180*theta)/Math.PI) + "°";
+    return "x:"+(int)x + "| y:" + (int)y + "| theta:" +(int) ((180*theta)/Math.PI)%360 + "°";
   }
   
   /**

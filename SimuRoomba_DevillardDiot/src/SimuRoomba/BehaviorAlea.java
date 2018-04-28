@@ -8,6 +8,25 @@ package SimuRoomba;
 public class BehaviorAlea extends Behavior{
 
 	
+	public static void main(String[] args)
+	{
+		Robot r = new Robot();
+		Environment env = new Environment(400,400); 
+		long time = System.nanoTime();
+		double dt=0;
+		int i=0;
+		while(i<2)
+		{
+			dt = (System.nanoTime() - time) / 1e9;
+			time=System.nanoTime();
+			env.setSampleTime(dt);
+			System.out.println("robot : " + r.generateNext(env));
+			i++;
+		}
+		
+		
+	}
+	
 	public BehaviorAlea()
 	{
 		this.setName("alea");
@@ -18,12 +37,41 @@ public class BehaviorAlea extends Behavior{
 	 * Nouvelle position du robot p+1 = p + dtv
 	 */
 	@Override
-	public Pos generateNext(Robot rob, Environment e) 
+	public Pos generateNext(Robot rob, Environment env) 
 	{
+		Pos lastPos = rob.getPos().clone();
+		Pos newPos = rob.getPos();
 		
-		double dl = Math.random()*rob.getSpeed() * e.getSampleTime() ;
-		double dr = Math.random()*rob.getSpeed() * e.getSampleTime() ;
-		return rob.getPos().move(dl, dr, 20);
+		
+		boolean bumping = false;
+		//double lastSpeed[] = new double[] {rob.getSpeed(0),rob.getSpeed(1)};
+		
+		do{ 
+			rob.getPos().set(lastPos.getX(),lastPos.getY(),lastPos.getTheta());
+			double v=0;
+			for(int i=0;i<2;i++)
+			{
+				//rob.setSpeed(i,lastSpeed[i]);
+				v=rob.getSpeed(i) + Math.random()-0.5;
+				v=(Math.abs(v)>rob.getMaxSpeed())?rob.getMaxSpeed():v;
+				rob.setSpeed(i, v);
+			}
+				
+			
+			
+			newPos = rob.move(env.getSampleTime());
+			for(int i = 0 ; i < rob.nbObstSensor() ; i++)
+			{
+				bumping = rob.getObstSensor(i).eventDetection(env);
+				
+				if(bumping)
+					break;
+			}
+			
+		}while(bumping);
+		
+		
+		return newPos;
 	}
 
 

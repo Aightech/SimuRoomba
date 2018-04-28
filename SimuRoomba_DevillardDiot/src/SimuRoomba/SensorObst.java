@@ -12,4 +12,9 @@ public abstract class SensorObst extends Sensor{
 	public abstract Object getInfoSensor();
 	public abstract boolean eventDetection(Environment env);
 	
+	public SensorObst(double px, double py , double ptheta)
+	{
+		super(px,py,ptheta);
+	}
+	
 }

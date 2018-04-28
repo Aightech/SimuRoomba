@@ -19,26 +19,47 @@ import javax.swing.JPanel;
 
 
 /**
- * Main Loop of the Simulation
+ * The Simulation class
  * @author Alexis Devillard and Tiphaine Diot
  *
  */
 public class Simulation extends JPanel implements ActionListener{
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
+	
 	/**
-	 * @attributs: myEnv, myBots, graphicInterface
+	 * Boolean to switch from a GUI or Terminal simulation
 	 */
 	public boolean graphicInterface;
+	
+	/**
+	 * Environment of the simulation: containing the dim of the room and the different obstacles and durts
+	 */
 	public Environment myEnv;
+	
+	/**
+	 * List of the robot of the simulation
+	 */
 	public ArrayList<Robot> myBots = new ArrayList<Robot>();
+	
+	/**
+	 * Current time of the simulation
+	 */
 	private long time;
 	
+	/**
+	 * Object to create the graphical thread
+	 */
 	private Controller GUI;
+	
+	/**
+	 * The graphical frame 
+	 */
 	private JFrame ma_fenetre;
+	
+	/**
+	 * Some attributes for interactive GUI
+	 */
 	private JPanel buttonPanel;
 	
 	private JPanel onMapPanel;
@@ -55,79 +76,85 @@ public class Simulation extends JPanel implements ActionListener{
 	
 	public static void main(String[] args) 
 	{
+		//create a environment of 4m x 4m
 		Environment env = new Environment(400,400); 
 		
+		//create the simulation (here in GUI mode)
 		Simulation simulation = new Simulation(env,true);
 	    
+		//add a robot to the simulation
 	    simulation.addBot(new Robot());
 	    
+	    
+	    //launch the simulation
 	    simulation.start();
 
 	}
 	
 	
-
+/**
+ * Costructor
+ * @param env Environement of the simualtion
+ * @param gui True for a graphical mode, false for a terminal mode
+ */
 	 public Simulation(Environment env,boolean gui)
 	 {
 		 this.myEnv = env;
-		 
 		 if(gui)
 		 {
 			 this.GUI = new Controller(this);
 			 this.GUIactive = true;
-			 
 			 this.initGUI();
-			 
 		}
-
-		
-		
-		
 	 }
 	 
 	 
-	 public void setEnv(Environment e)
-	 {
-		 this.myEnv = e;
-	 }
+	 public void setEnv(Environment e){	this.myEnv = e;	}
 	 
+	 /**
+	  * add a object on the environment of the simulation
+	  * @param i 0: robot, 1: obstacle, 2: dirt
+	  */
 	 public void addOnMap(int i)
 	 {
 		 switch(i)
 		 {
-		 case 0:
+		 case 0://robot
 			 this.addBot(new Robot());
 			 break;
-		 case 1:
+		 case 1://obstacle
 			 this.myEnv.addObst(new Obstacle( (int)(this.myEnv.getWidth()*Math.random()) ,(int)(this.myEnv.getHeigth()*Math.random()) ) );
 			 break;
-		 case 2:
+		 case 2://dirt
 			 this.myEnv.addDurt(new Durt((int)(this.myEnv.getWidth()*Math.random()) ,(int)(this.myEnv.getHeigth()*Math.random())));
 			 break;
 		 }
 	 }
 	 
 	 
-	 public void setBehavior(int i)
+	 public void setBehavior(int j)
 	 {
-		 switch(i)
+		 switch(j)
 		 {
 		 case 0:
-			 this.addBot(new Robot());
+		 {
+			 for(int i=0;i<this.myBots.size();i++)
+		    {
+			    this.myBots.get(i).setBehavior(new BehaviorAlea());
+		    }
+		 }break;
 			 
 		 }
 	 }
 	 
-	 public void addBot(Robot rob)
-	 {
-		 this.myBots.add(rob);
-	 }
+	 public void addBot(Robot rob){	this.myBots.add(rob);	}
 	 
 	 public void start()
 	 {
 		 if(this.GUIactive)
 			 this.GUI.start();
-		 
+		
+		this.time=System.nanoTime();		
 		while(true)
 		{
 			this.update();
@@ -144,61 +171,55 @@ public class Simulation extends JPanel implements ActionListener{
 		 
 		 System.out.print("Simulation:");
 		 for(int i=0;i<this.myBots.size();i++)
-			 System.out.print("\t#robot n°"+ i + ": " + this.myBots.get(i).generateNext(this.myEnv));
+			System.out.print("\t#robot n°"+ i + ": " + this.myBots.get(i).generateNext(this.myEnv));
 		 
 		 System.out.print("\n");
 	 }
 	 
 	 public void initGUI()
 	 {
-		 setBackground(Color.white);
-		 setOpaque(true);
-		 
-		 
-		this.setPreferredSize(new Dimension(this.myEnv.getWidth(), this.myEnv.getHeigth())); // Taille de la fenetre
-		
-		ma_fenetre = new JFrame("Simulation Roomba");
-		
-		this.onMapPanel = new JPanel();
-		//On crée une première grille pour les nombres
-		//GridLayout(int rows, int cols)
-		GridLayout onMapGrid = new GridLayout(1,3);
-		onMapPanel.setLayout(onMapGrid);
-		//createEmptyBorder(North , West , South , East)
-		//la fonction setBorder nous permet de séparer proprement les différents panels que nous utilisons
-		onMapPanel.setBorder(BorderFactory.createEmptyBorder(6,2,2,3));
-	
-		//On crée tous les boutons des onMap
-		this.onMapButtons = new JButton[3];
-		for(int i = 0 ; i < 3; i++)
-		{
-			this.onMapButtons[i] = new JButton(this.onMapItem[i]);
-			this.onMapPanel.add(this.onMapButtons[i]);
-			this.onMapButtons[i].addActionListener(this);
-		}
-			//Pour chaque bouton on ajoute une action d'écoute
-			//this.nbButtons[i].addActionListener(this);
-			this.behaviorPanel = new JPanel();
-			GridLayout behaviorGrid = new GridLayout(1,3);
-			behaviorPanel.setLayout(behaviorGrid);
-			//createEmptyBorder(North , West , South , East)
+			 setBackground(Color.white);
+			 setOpaque(true);
+			 if(this.myEnv!=null)
+				 this.setPreferredSize(new Dimension(this.myEnv.getWidth(), this.myEnv.getHeigth())); // Taille de la fenetre
+			 else
+				 this.setPreferredSize(new Dimension(200,200)); // Taille de la fenetre
+			 
+			ma_fenetre = new JFrame("Simulation Roomba");
+			
+			
+			//------------ONMAP PANEL------------
+			this.onMapPanel = new JPanel();
+			//On crée une première grille pour les boutons ajoutant des objets de la carte
+			onMapPanel.setLayout(new GridLayout(1,3));//GridLayout(int rows, int cols)
 			//la fonction setBorder nous permet de séparer proprement les différents panels que nous utilisons
+			onMapPanel.setBorder(BorderFactory.createEmptyBorder(6,2,2,3));//createEmptyBorder(North , West , South , East)
+			
+			//------------BEHAVIOR PANEL------------
+			this.behaviorPanel = new JPanel();
+			behaviorPanel.setLayout(new GridLayout(1,3));
 			behaviorPanel.setBorder(BorderFactory.createEmptyBorder(6,2,2,3));
 			
-			//On crée tous les boutons des nombres
+			//On crée un tableau pour tous les boutons des onMap
+			this.onMapButtons = new JButton[3];
+			//On crée tous un tableau pour tous le boutons des Comportements
 			this.behaviorButtons = new JButton[3];
 			for(int i = 0 ; i < 3; i++)
 			{
-				this.behaviorButtons[i] = new JButton(this.behaviorType[i]);
-				this.behaviorPanel.add(this.behaviorButtons[i]);
-				//Pour chaque bouton on ajoute une action d'écoute
-				this.behaviorButtons[i].addActionListener(this);
+				this.onMapButtons[i] = new JButton(this.onMapItem[i]);//on crée le bouton
+				this.onMapPanel.add(this.onMapButtons[i]);//on ajoute le bouton au panel
+				this.onMapButtons[i].addActionListener(this);//Pour chaque bouton on ajoute une action d'écoute
+				
+				this.behaviorButtons[i] = new JButton(this.behaviorType[i]);//on crée le bouton
+				this.behaviorPanel.add(this.behaviorButtons[i]);//on ajoute le bouton au panel
+				this.behaviorButtons[i].addActionListener(this);//Pour chaque bouton on ajoute une action d'écoute
 			}
-			
+				
+			// ------- BUTONS PANEL --------
 			this.buttonPanel = new JPanel();
-			GridLayout buttonGrid = new GridLayout(6,1);
-			buttonPanel.setLayout(buttonGrid);
+			buttonPanel.setLayout(new GridLayout(6,1));
 			
+			//on y ajoute les deux panel précedant et on insert des label Expplicatifs
 			buttonPanel.add(new JLabel("OBJECTS",JLabel.CENTER));
 			buttonPanel.add(new JLabel("(Click to randomly put one on the map)",JLabel.CENTER));
 			buttonPanel.add(onMapPanel,BorderLayout.WEST); // Le contenu est l'objet Move
@@ -206,9 +227,10 @@ public class Simulation extends JPanel implements ActionListener{
 			buttonPanel.add(new JLabel("(Click to set robot(s) behavior)",JLabel.CENTER));
 			buttonPanel.add(behaviorPanel, BorderLayout.SOUTH);
 			
+			//on place la zone représantant la pièce simulée
 			ma_fenetre.add(this, BorderLayout.WEST);
 			ma_fenetre.add(buttonPanel, BorderLayout.EAST);
-			//
+			
 			ma_fenetre.pack();
 			ma_fenetre.setVisible(true);
 	 }
@@ -249,11 +271,10 @@ public class Simulation extends JPanel implements ActionListener{
 	    g2.setColor(Color.white);
 	    g2.fillRect(0, 0, (int)g2.getClipBounds().getWidth(),(int) g2.getClipBounds().getHeight());
 	    
-	  //TODO on dessine l'environement 
-	    
 	    for(int i=0;i<this.myBots.size();i++)
 	    {
 		    display(this.myBots.get(i),g);
+		    displaySensor(this.myBots.get(i),g);
 	    }
 	    
 	    //on redessine tous les robots
@@ -266,8 +287,6 @@ public class Simulation extends JPanel implements ActionListener{
 	    {
 		    display(this.myEnv.getObst(i),g);
 	    }
-	    
-
 	    // on rend la main
 	    g2.dispose();
 	  }
@@ -283,16 +302,35 @@ public class Simulation extends JPanel implements ActionListener{
 	  {
 			Graphics2D g2 = (Graphics2D) g;
 			Pos pos = obj.getPos();
-			// on dessin un disque rouge
+			
 			g2.setColor(obj.color);
-			if(obj.getShape()==OnMap.shapes[0])
-				g2.fillOval((int)pos.getX(),(int) pos.getY(),(int)obj.getSize() , (int)obj.getSize());
-			else if(obj.getShape()==OnMap.shapes[1])
+			int size = (int)obj.getSize();
+			if(obj.getShape()==OnMap.shapes[0])//circle
+				g2.fillOval((int)pos.getX()-size/2,(int) pos.getY()-size/2,size,size);
+			else if(obj.getShape()==OnMap.shapes[1])//square
 				g2.fillRect((int)pos.getX(),(int) pos.getY(), (int)obj.getSize(), (int)obj.getSize());
 			else if(obj.getShape()==OnMap.shapes[2])//TODO gérer les polygon
 				g2.fillRect((int)pos.getX(),(int) pos.getY(), (int)obj.getSize(), (int)obj.getSize());
 			
 			
+	  }
+	  
+	  public void displaySensor(Robot rob,Graphics g)
+	  {
+		  Graphics2D g2 = (Graphics2D) g;
+		  double dx = 0;
+		  double dy = 0;
+		  double thetar = rob.getPos().getTheta();
+		  
+		  for(int i = 0 ; i < rob.nbObstSensor() ; i++)
+		  {
+			  dx = rob.getObstSensor(i).getPos().getX();
+			  dy = rob.getObstSensor(i).getPos().getY();
+			  double ptx = rob.getPos().getX() + dx * Math.cos(thetar) + dy*Math.sin(thetar);
+			  double pty = rob.getPos().getY() - dx * Math.sin(thetar) + dy*Math.cos(thetar);
+			  g2.setColor(Color.BLUE);
+			  g2.fillOval((int)(ptx-8),(int)( pty-8),16 , 16);
+		  }
 	  }
 	  
 	  @Override
@@ -307,10 +345,5 @@ public class Simulation extends JPanel implements ActionListener{
 			for(int i = 0; i<3; i++)
 				if(e.getSource() == this.behaviorButtons[i])
 					setBehavior(i);
-			
-			
-			
 		}
-
-
 }

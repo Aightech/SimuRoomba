@@ -10,21 +10,28 @@ public abstract class Sensor {
 	/**
 	 * @attributs: posOnRob, flag, detectZone;
 	 */
-	protected double[] posOnRob;
+	protected Pos posOnRob = new  Pos(0,0,0);//(dx,dy,dtheta) par rapport au centre du robot
 	protected boolean flag;
 	protected int[] detectZone;
+	protected Robot myRob;
 
 	
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+	
+	
+	public Sensor()
+	{
+		Pos posOnRob = new  Pos(0,0,0);
+	}
+	public Sensor(double px, double py, double ptheta)
+	{
+		Pos posOnRob = new  Pos(px,py,ptheta);
 	}
 	
-	public void setPos(double[] p)
+	public void setPos(Pos p)
 	{
 		this.posOnRob = p;
 	}
-	public double[] getPos()
+	public Pos getPos()
 	{
 		return this.posOnRob;
 	}

@@ -15,13 +15,13 @@ public class Obstacle extends OnMap{
 	
 	public Obstacle()
 	{
-		super(200,200,0,"Circle");
+		super(200,200,0,20,"Circle");
 		this.color = Color.green;
 	}
 	
 	public Obstacle(int px, int py)
 	{
-		super(px,py,0,"Circle");
+		super(px,py,0,20,"Circle");
 		this.color = Color.green;
 	}
 

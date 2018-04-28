@@ -15,13 +15,13 @@ public class Durt extends OnMap{
 	
 	public Durt()
 	{
-		super(200,200,0,"Circle");
+		super(200,200,0,10,"Circle");
 		this.color = Color.gray;
 	}
 	
 	public Durt(int px, int py)
 	{
-		super(px,py,0,"Circle");
+		super(px,py,0,10,"Circle");
 		this.color = Color.gray;
 	}
 }
