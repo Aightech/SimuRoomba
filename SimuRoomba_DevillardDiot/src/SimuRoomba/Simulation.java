@@ -160,6 +160,24 @@ public class Simulation extends JPanel implements ActionListener{
 		 if(this.GUIactive)
 			 this.GUI.start();
 		
+		 
+		//Interface texte on appelle les fonctions toString pour tous les éléments sur la carte et pour l'environnement
+		System.out.println("Initialisation de la simulation:");
+		System.out.println(this.myEnv.toString());
+		for(int i=0; i < this.myEnv.nbObst(); i++)
+		{
+			System.out.println(this.myEnv.getObst(i).toString());
+		}
+		for(int i=0; i< this.myEnv.nbDurt(); i++)
+		{
+			System.out.println(this.myEnv.getObst(i).toString());
+		}
+		for(int i=0; i < this.myBots.size(); i++)
+		{	
+			System.out.println("\t#robot n°" + i + ": "
+					+ this.myBots.get(i).getBehavior().getName());
+		}
+				 
 		this.time=System.nanoTime();		
 		while(true)
 		{

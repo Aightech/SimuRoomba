@@ -40,7 +40,7 @@ public class SensorDurt extends Sensor {
 	}
 
 	/**
-	 * circleDust() return a boolean according the fact the sensor detect dust
+	 * isDirty() return a boolean according the fact the sensor detect dust for circle shape
 	 */
 	private boolean isDirty(Robot rob, Environment env) {
 		double xr = rob.getPos().getX();
@@ -61,9 +61,18 @@ public class SensorDurt extends Sensor {
 
 			for (int i = 0; i < env.nbDurt(); i++) {
 				Durt drt = env.getDurt(i);
-					return true;
+				this.flag = true;	
+				return true;
 			}
 		}
+		this.flag = false; 
 		return false;
+	}
+	
+	public String toString(){
+		if(this.flag)
+			return "Poussière détectée : oui \n";
+		else
+			return "Poussière détectée : non \n";
 	}
 }

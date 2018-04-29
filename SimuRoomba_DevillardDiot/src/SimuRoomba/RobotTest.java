@@ -4,6 +4,12 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+/**
+ * Classe de tests pour le robot
+ * @author Alexis Devillard et Tiphaine Diot
+ *
+ */
+
 public class RobotTest extends Robot {
 
 	@Test

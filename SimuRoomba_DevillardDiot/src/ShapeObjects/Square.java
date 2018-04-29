@@ -12,6 +12,7 @@ public class Square extends Shape {
 	{
 		this.size = psize;
 		this.pos = position;
+		this.name = "Square";
 	}
 	@Override
 	public void display(Graphics g, Color color) {

@@ -11,6 +11,7 @@ public class Circle extends Shape {
 	{
 		this.size = psize;
 		this.pos = position;
+		this.name = "Circle";
 	}
 	@Override
 	public void display(Graphics g, Color color) {
