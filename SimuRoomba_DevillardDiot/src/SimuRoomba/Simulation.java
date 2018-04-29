@@ -1,5 +1,8 @@
 package SimuRoomba;
 
+import ObjectOnMap.*;
+import BehaviorRoomba.*;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -9,7 +12,6 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.Date;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -281,66 +283,21 @@ public class Simulation extends JPanel implements ActionListener{
 	    g2.fillRect(0, 0, (int)g2.getClipBounds().getWidth(),(int) g2.getClipBounds().getHeight());
 	    
 	    for(int i=0;i<this.myBots.size();i++)
-	    {
-		    display(this.myBots.get(i),g);
-		    displaySensor(this.myBots.get(i),g);
-	    }
+		    this.myBots.get(i).display(g);
 	    
 	    //on redessine tous les robots
 	    for(int i=0;i<this.myEnv.nbDurt();i++)
-	    {
-		    display(this.myEnv.getDurt(i),g);
-	    }
+		    this.myEnv.getDurt(i).display(g);
+	    
 	    
 	    for(int i=0;i<this.myEnv.nbObst();i++)
-	    {
-		    display(this.myEnv.getObst(i),g);
-	    }
+		    this.myEnv.getObst(i).display(g);
+	    
 	    // on rend la main
 	    g2.dispose();
 	  }
 	  
 	  
-	  
-	  /**
-	   * affiche l'objet onMap sur la fenetre
-	   * @param obj OnMap object
-	   * @param g
-	   */
-	  public void display(OnMap obj,Graphics g)
-	  {
-			Graphics2D g2 = (Graphics2D) g;
-			Pos pos = obj.getPos();
-			
-			g2.setColor(obj.color);
-			int size = (int)obj.getSize();
-			if(obj.getShape()==OnMap.shapes[0])//circle
-				g2.fillOval((int)pos.getX()-size/2,(int) pos.getY()-size/2,size,size);
-			else if(obj.getShape()==OnMap.shapes[1])//square
-				g2.fillRect((int)pos.getX(),(int) pos.getY(), (int)obj.getSize(), (int)obj.getSize());
-			else if(obj.getShape()==OnMap.shapes[2])//TODO gérer les polygon
-				g2.fillRect((int)pos.getX(),(int) pos.getY(), (int)obj.getSize(), (int)obj.getSize());
-			
-			
-	  }
-	  
-	  public void displaySensor(Robot rob,Graphics g)
-	  {
-		  Graphics2D g2 = (Graphics2D) g;
-		  double dx = 0;
-		  double dy = 0;
-		  double thetar = rob.getPos().getTheta();
-		  
-		  for(int i = 0 ; i < rob.nbObstSensor() ; i++)
-		  {
-			  dx = rob.getObstSensor(i).getPos().getX();
-			  dy = rob.getObstSensor(i).getPos().getY();
-			  double ptx = rob.getPos().getX() + dx * Math.cos(thetar) + dy*Math.sin(thetar);
-			  double pty = rob.getPos().getY() - dx * Math.sin(thetar) + dy*Math.cos(thetar);
-			  g2.setColor(Color.BLUE);
-			  g2.fillOval((int)(ptx-8),(int)( pty-8),16 , 16);
-		  }
-	  }
 	  
 	  @Override
 		public void actionPerformed(ActionEvent e) 

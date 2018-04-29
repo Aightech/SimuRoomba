@@ -40,8 +40,6 @@ public class RobotTest extends Robot {
 	public void testGenerateNext() {
 		Robot r = new Robot();
 		Environment env = new Environment(400,400); 
-		long time = System.nanoTime();
-		double dt=0;
 		int i=0;
 		while(i<10)
 		{

@@ -2,37 +2,41 @@ package SimuRoomba;
 
 import java.util.ArrayList;
 
+import ObjectOnMap.Durt;
+import ObjectOnMap.Obstacle;
+
 /**
  * Environment represents the room waiting to be cleaned
- * @author Alexis Devillard and Tiphaine Diot
- *
+ * 
+ * @author Alexis Devillard and Tiphaine Diot Attributs: obstacles[], durts[],
+ *         dim, matEnv Functions : getters and setters + functions add/delete
+ *         for the arrayList
  */
 public class Environment {
 
 	/**
-	 * @attributs: obstacles[], durts[], dim, matEnv
-	 * 
+	 * obstacles[] contains all the obstacles on the map durts[] contains all
+	 * the information about each dirt on the map dim is a int array, dimension
+	 * of the map mapEnv[][] matrix of the map sampleTime the frequency of the
+	 * simulation
 	 */
-	
+
 	protected ArrayList<Obstacle> obstacles;
 	protected ArrayList<Durt> durts;
-	protected int[] dim;
+	protected int[] dim = new int[2];
 	protected double sampleTime;
-	
-	
-	
 
-	public Environment(int pwidth, int pheight)
-	{
-		this.dim = new int[2];
-		this.dim[0]=pwidth;
-		this.dim[1]=pheight;
-		
-		
+	// Constructor
+	public Environment(int pwidth, int pheight) {
+		this.dim[0] = pwidth;
+		this.dim[1] = pheight;
+
+
 		this.obstacles = new ArrayList<Obstacle>();
 		this.durts = new ArrayList<Durt>();
-		
+
 	}
+
 	
 	public int getWidth(){ return this.dim[0];}
 	public int getHeigth(){ return this.dim[1];}

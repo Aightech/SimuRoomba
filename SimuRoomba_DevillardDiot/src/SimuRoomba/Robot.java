@@ -1,6 +1,16 @@
 package SimuRoomba;
 
+import SensorsRoomba.*;
+import ObjectOnMap.*;
+import BehaviorRoomba.*;
+
+import SensorsRoomba.SensorObst;
+import SensorsRoomba.SensorDurt;
+
+
 import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.util.ArrayList;
 
 
@@ -23,7 +33,7 @@ public class Robot extends OnMap{
 	/**
 	 * La vitesse de rotation maximal des deux roues (1m/s==> 1/(2piR) ~= 5tr/s)
 	 */
-	protected double maxSpeed = 100/Math.PI/this.wheelSize;
+	protected double maxSpeed = 5;//100/Math.PI/this.wheelSize;
 	
 	
 	
@@ -44,13 +54,12 @@ public class Robot extends OnMap{
 	
 	public Robot()
 	{
-		super(200,200,0,34,"Circle");
+		super(200,200,0,34);
 		this.behavior = new BehaviorAlea();
 		this.speed = new double[] {0,1};//[rotation speed of the right wheel, rotation speed of the left wheel]
 		this.color = Color.red;//les robots sont rouges (comme ca ils sont plus rapides !...)
 		
 		this.sensObsts = new ArrayList<SensorObst>();
-		
 		//on lui donne trois bumping capteurs fronteaux
 		this.sensObsts.add(new SensorBump(this));
 		this.sensObsts.add(new SensorBump(this,Math.toRadians(45)));
@@ -66,7 +75,7 @@ public class Robot extends OnMap{
 	public Pos move(double dt)
 	{
 		double vm = wheelSize*Math.PI*(speed[0]+speed[1])/2;
-		double thetap = wheelSize/size*(speed[0]-speed[1]);
+		double thetap = wheelSize/this.getShape().getSize()*(speed[0]-speed[1]);
 		double x=posOnMap.getX();
 		double y=posOnMap.getY();
 		double theta = posOnMap.getTheta();
@@ -116,5 +125,30 @@ public class Robot extends OnMap{
 		this.posOnMap = this.behavior.generateNext(this,e);
 		return this.posOnMap;
 	}
+	
+	@Override
+	public void display(Graphics g)
+	{
+		this.shape.display(g,this.color);
+		
+		Graphics2D g2 = (Graphics2D) g;
+	    double dx = 0;
+	    double dy = 0;
+		  
+		double xr = this.posOnMap.getX();
+		double yr = this.posOnMap.getY();
+		double thetar = this.posOnMap.getTheta();
+		  
+		  for(int i = 0 ; i < this.sensObsts.size() ; i++)
+		  {
+			  dx = this.sensObsts.get(i).getPos().getX();
+			  dy = this.sensObsts.get(i).getPos().getY();
+			  double ptx = xr + dx * Math.cos(thetar) + dy*Math.sin(thetar);
+			  double pty = yr - dx * Math.sin(thetar) + dy*Math.cos(thetar);
+			  g2.setColor(Color.BLUE);
+			  g2.fillOval((int)(ptx-8),(int)( pty-8),16 , 16);
+		  }
+	}
+	
 	
 }
