@@ -20,27 +20,11 @@ public class SensorDurt extends Sensor {
 	 */
 
 	public SensorDurt(Robot r) {
-		/*
-		 * this.detectZone[0] = 5; //rayon de détection de 5 cm autour de son
-		 * centre this.posOnRob[0] = 15; //Pos selon le repère du robot, X dans
-		 * l'axe des roues et Y perpendiculaire this.posOnRob[1] = 0;
-		 * this.posOnRob[2] = 0; //The angle of view of the sensor is null for
-		 * an basic sensor bump - aligned with the angle of the robot
-		 */
+		super((double) 0, r.getShape().getSize(), (double) 0);
+		this.myRob = r;
+		this.posOnRob.set((double) 0, (double) 0, (double) 0);
 	}
 
-	public SensorDurt(Robot r, double anglOnRob, int detectRange,
-			double distFromCtr) {
-		/*
-		 * this.detectZone[0] = detectRange; //the bump sensor detects one
-		 * obstacle by touching it. this.posOnRob[0] =
-		 * distFromCtr*Math.cos(anglOnRob); //Pos selon le repère du robot, X
-		 * dans l'axe des roues et Y perpendiculaire this.posOnRob[1] =
-		 * distFromCtr*Math.sin(anglOnRob); this.posOnRob[2] = anglOnRob; //The
-		 * angle of view of the sensor is null for an basic sensor bump -
-		 * aligned with the angle of the robot
-		 */
-	}
 
 	@Override
 	public Object getInfoSensor() {
@@ -52,13 +36,13 @@ public class SensorDurt extends Sensor {
 	 * dirty zone is circular
 	 */
 	public boolean eventDetection(Environment env) {
-		return circleDust(this.myRob, env);
+		return isDirty(this.myRob, env);
 	}
 
 	/**
 	 * circleDust() return a boolean according the fact the sensor detect dust
 	 */
-	private boolean circleDust(Robot rob, Environment env) {
+	private boolean isDirty(Robot rob, Environment env) {
 		double xr = rob.getPos().getX();
 		double yr = rob.getPos().getY();
 		double thetar = rob.getPos().getTheta();
@@ -77,8 +61,6 @@ public class SensorDurt extends Sensor {
 
 			for (int i = 0; i < env.nbDurt(); i++) {
 				Durt drt = env.getDurt(i);
-				if (Math.hypot(ptx - drt.getPos().getX(), pty
-						- drt.getPos().getY()) < drt.getSize() / 2)
 					return true;
 			}
 		}

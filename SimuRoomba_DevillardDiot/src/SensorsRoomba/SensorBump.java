@@ -14,6 +14,7 @@ import SimuRoomba.Environment;
  */
 public class SensorBump extends SensorObst {
 
+	private boolean bumping;
 
 	/**
 	 * 2 constructors
@@ -44,12 +45,9 @@ public class SensorBump extends SensorObst {
 	 * return the distance between the obstacle and the robot) Return -1 if no
 	 * bumping
 	 */
-	public Object getInfoSensor() {
-		if (this.flag == true)
-			this.dist = 0;
-		else
-			this.dist = -1;
-		return this.dist;
+	public Object getInfoSensor() 
+	{
+		return this.bumping;
 	}
 
 	/**
@@ -58,7 +56,7 @@ public class SensorBump extends SensorObst {
 	public boolean eventDetection(Environment env) {
 
 		// Cas pour le bumping sur un objet circulaire
-		boolean bumping = false;
+		bumping = false;
 		bumping = isBumpingCircle(this.myRob, env);
 		// If bumping on a circular object we stop else we try for every shape
 		// if(!bumping)
@@ -88,10 +86,12 @@ public class SensorBump extends SensorObst {
 		for (double dO = -range; dO < range; dO += inc) {
 			ptx = xr + dx * Math.cos(thetar + dO) + dy * Math.sin(thetar + dO);
 			pty = yr - dx * Math.sin(thetar + dO) + dy * Math.cos(thetar + dO);
-			if (ptx < 0 || pty < 0 || ptx > env.getWidth()
-					|| pty > env.getHeigth())
+			
+			//wall detection
+			if (ptx < 0 || pty < 0 || ptx > env.getWidth()|| pty > env.getHeigth())
 				return true;
-
+			
+			//obstacle detection
 			for (int i = 0; i < env.nbObst(); i++) 
 			{
 				Obstacle obst = env.getObst(i);
