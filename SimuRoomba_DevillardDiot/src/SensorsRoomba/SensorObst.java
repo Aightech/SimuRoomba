@@ -5,7 +5,6 @@ import SimuRoomba.Environment;
 /**
  * Class representing obstacles sensors on the robot, return a distance to the
  * detected obstacle
- * 
  * @author Alexis Devillard and Tiphaine Diot
  * 
  */

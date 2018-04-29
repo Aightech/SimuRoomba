@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<diagram program="umlet" version="14.2">
-  <zoom_level>6</zoom_level>
+<diagram program="umlet" version="14.2.0">
+  <zoom_level>4</zoom_level>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>546</x>
-      <y>816</y>
-      <w>270</w>
-      <h>150</h>
+      <x>464</x>
+      <y>524</y>
+      <w>176</w>
+      <h>108</h>
     </coordinates>
     <panel_attributes>Pos
 Package::ObjectOnMap
@@ -25,6 +25,7 @@ Package::ObjectOnMap
 + move(dl: double, dr: double, ecartRoues: double): Pos
 + normalize_angle(a: double): double
 + toString(): String
++ display(g: Graphic)
 
 bg=red</panel_attributes>
     <additional_attributes/>
@@ -32,10 +33,10 @@ bg=red</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>774</x>
-      <y>1134</y>
-      <w>198</w>
-      <h>132</h>
+      <x>584</x>
+      <y>756</y>
+      <w>132</w>
+      <h>88</h>
     </coordinates>
     <panel_attributes>/Sensor/
 Package::SensorsRoomba
@@ -59,15 +60,16 @@ bg=pink</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>348</x>
-      <y>978</y>
-      <w>336</w>
-      <h>96</h>
+      <x>184</x>
+      <y>636</y>
+      <w>268</w>
+      <h>72</h>
     </coordinates>
     <panel_attributes>SensorBump
 Package::SensorsRoomba
 
 --
+- bumping: boolean
 --
 
 *+ getInfoSensor(): Object*
@@ -81,18 +83,16 @@ bg=pink</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>348</x>
-      <y>1080</y>
-      <w>336</w>
-      <h>126</h>
+      <x>184</x>
+      <y>716</y>
+      <w>268</w>
+      <h>72</h>
     </coordinates>
     <panel_attributes>SensorLaser
 Package::SensorsRoomba
 
 --
-
 - range: double
-
 --
 
 *+ getInfoSensor(): Object*
@@ -107,10 +107,10 @@ bg=pink</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>834</x>
-      <y>1104</y>
-      <w>18</w>
-      <h>42</h>
+      <x>612</x>
+      <y>736</y>
+      <w>12</w>
+      <h>28</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
     <additional_attributes>10.0;50.0;10.0;10.0</additional_attributes>
@@ -118,40 +118,38 @@ bg=pink</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>678</x>
-      <y>1080</y>
-      <w>30</w>
-      <h>18</h>
+      <x>448</x>
+      <y>720</y>
+      <w>80</w>
+      <h>56</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>30.0;10.0;10.0;10.0</additional_attributes>
+    <additional_attributes>180.0;10.0;10.0;120.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>678</x>
-      <y>1044</y>
-      <w>30</w>
-      <h>18</h>
+      <x>448</x>
+      <y>652</y>
+      <w>80</w>
+      <h>56</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>30.0;10.0;10.0;10.0</additional_attributes>
+    <additional_attributes>180.0;120.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>960</x>
-      <y>606</y>
-      <w>282</w>
-      <h>114</h>
+      <x>720</x>
+      <y>392</y>
+      <w>188</w>
+      <h>76</h>
     </coordinates>
     <panel_attributes>/Behavior/
 Package::BehaviorRoomba
 
 --
-
 - name: String
-
 --
 
 + setName(nm: String)
@@ -165,10 +163,10 @@ bg=orange</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>888</x>
-      <y>750</y>
-      <w>204</w>
-      <h>66</h>
+      <x>672</x>
+      <y>488</y>
+      <w>160</w>
+      <h>44</h>
     </coordinates>
     <panel_attributes>BehaveAlea
 Package::BehaviorRoomba
@@ -185,10 +183,10 @@ bg=orange</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>978</x>
-      <y>828</y>
-      <w>276</w>
-      <h>114</h>
+      <x>748</x>
+      <y>536</y>
+      <w>184</w>
+      <h>76</h>
     </coordinates>
     <panel_attributes>BehavePath
 Package::BehaviorRoomba
@@ -210,10 +208,10 @@ bg=orange</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1146</x>
-      <y>750</y>
-      <w>246</w>
-      <h>66</h>
+      <x>844</x>
+      <y>488</y>
+      <w>164</w>
+      <h>44</h>
     </coordinates>
     <panel_attributes>BehaveWalls
 Package::BehaviorRoomba
@@ -230,10 +228,10 @@ bg=orange</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1044</x>
-      <y>714</y>
-      <w>18</w>
-      <h>48</h>
+      <x>776</x>
+      <y>464</y>
+      <w>12</w>
+      <h>32</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;60.0</additional_attributes>
@@ -241,10 +239,10 @@ bg=orange</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1206</x>
-      <y>714</y>
-      <w>18</w>
-      <h>48</h>
+      <x>884</x>
+      <y>464</y>
+      <w>12</w>
+      <h>32</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;60.0</additional_attributes>
@@ -252,21 +250,21 @@ bg=orange</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1110</x>
-      <y>714</y>
-      <w>18</w>
-      <h>126</h>
+      <x>832</x>
+      <y>464</y>
+      <w>12</w>
+      <h>80</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;190.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;180.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>696</x>
-      <y>360</y>
-      <w>294</w>
-      <h>168</h>
+      <x>552</x>
+      <y>220</y>
+      <w>208</w>
+      <h>116</h>
     </coordinates>
     <panel_attributes>Robot
 Package::ObjectOnMap
@@ -285,17 +283,16 @@ Package::ObjectOnMap
 + move(dt: double): Pos
 + nbObstSensor(): int
 + generateNext(e: Environment): Pos
-
-bg=red</panel_attributes>
+- display(g: Graphic)</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>894</x>
-      <y>1104</y>
-      <w>18</w>
-      <h>42</h>
+      <x>680</x>
+      <y>736</y>
+      <w>12</w>
+      <h>28</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
     <additional_attributes>10.0;50.0;10.0;10.0</additional_attributes>
@@ -303,10 +300,10 @@ bg=red</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>534</x>
-      <y>654</y>
-      <w>198</w>
-      <h>132</h>
+      <x>372</x>
+      <y>416</y>
+      <w>212</w>
+      <h>80</h>
     </coordinates>
     <panel_attributes>/OnMap/
 Package::ObjectOnMap
@@ -314,9 +311,8 @@ Package::ObjectOnMap
 --
 
 _- shapes: String[3]_
-_- types: String[2]_
 - posOnMap: Pos
-- shape: String
+- shape: Shape
 - size: double
 - color: Color
 
@@ -328,10 +324,10 @@ bg=red</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>468</x>
-      <y>600</y>
-      <w>102</w>
-      <h>36</h>
+      <x>380</x>
+      <y>372</y>
+      <w>68</w>
+      <h>24</h>
     </coordinates>
     <panel_attributes>Durt
 Package::ObjectOnMap
@@ -342,10 +338,10 @@ bg=red</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>576</x>
-      <y>600</y>
-      <w>102</w>
-      <h>36</h>
+      <x>472</x>
+      <y>372</y>
+      <w>68</w>
+      <h>24</h>
     </coordinates>
     <panel_attributes>Obstacle
 Package::ObjectOnMap
@@ -358,10 +354,10 @@ bg=red</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>414</x>
-      <y>354</y>
-      <w>180</w>
-      <h>204</h>
+      <x>388</x>
+      <y>220</y>
+      <w>120</w>
+      <h>128</h>
     </coordinates>
     <panel_attributes>Environment
 Package::SimuRoomba
@@ -375,7 +371,6 @@ Package::SimuRoomba
 
 --
 
-+ Environment()
 + getWidth(): int
 + getHeigth(): int
 + addObst(o: Obstacle)
@@ -385,39 +380,38 @@ Package::SimuRoomba
 + delDurt(i: int)
 + nbDurt(): int
 
-
 </panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>552</x>
-      <y>630</y>
-      <w>18</w>
-      <h>36</h>
+      <x>436</x>
+      <y>392</y>
+      <w>12</w>
+      <h>32</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;40.0;10.0;10.0</additional_attributes>
+    <additional_attributes>10.0;60.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>612</x>
-      <y>630</y>
-      <w>18</w>
-      <h>36</h>
+      <x>476</x>
+      <y>392</y>
+      <w>12</w>
+      <h>32</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;40.0;10.0;10.0</additional_attributes>
+    <additional_attributes>10.0;60.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>774</x>
-      <y>522</y>
-      <w>18</w>
-      <h>306</h>
+      <x>592</x>
+      <y>332</y>
+      <w>12</w>
+      <h>200</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
 
@@ -442,100 +436,79 @@ Package::SimuRoomba
 
 
 </panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;490.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;480.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>552</x>
-      <y>552</y>
-      <w>18</w>
-      <h>60</h>
+      <x>436</x>
+      <y>344</y>
+      <w>12</w>
+      <h>36</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
 
 n
 
 </panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;80.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;70.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>582</x>
-      <y>552</y>
-      <w>18</w>
-      <h>60</h>
+      <x>476</x>
+      <y>344</y>
+      <w>12</w>
+      <h>36</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
 
 n
 
 </panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;80.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;70.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>672</x>
-      <y>780</y>
-      <w>18</w>
-      <h>48</h>
+      <x>516</x>
+      <y>492</y>
+      <w>12</w>
+      <h>40</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
 
 1
 </panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;60.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;80.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>966</x>
-      <y>432</y>
-      <w>18</w>
-      <h>276</h>
+      <x>744</x>
+      <y>332</y>
+      <w>12</w>
+      <h>68</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
-
-
-
-
-
-
-
-
-
-
 
 1  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 </panel_attributes>
-    <additional_attributes>10.0;160.0;10.0;290.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;150.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>876</x>
-      <y>522</y>
-      <w>18</w>
-      <h>510</h>
+      <x>664</x>
+      <y>332</y>
+      <w>12</w>
+      <h>356</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
+
+
+
+
 n
 
 
@@ -584,15 +557,15 @@ n
 
 
 </panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;830.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;870.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>696</x>
-      <y>1020</y>
-      <w>168</w>
-      <h>90</h>
+      <x>520</x>
+      <y>680</y>
+      <w>140</w>
+      <h>60</h>
     </coordinates>
     <panel_attributes>/SensorObst/
 Package::SensorsRoomba
@@ -610,10 +583,10 @@ bg=pink</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>870</x>
-      <y>1020</y>
-      <w>180</w>
-      <h>90</h>
+      <x>664</x>
+      <y>680</y>
+      <w>156</w>
+      <h>60</h>
     </coordinates>
     <panel_attributes>SensorDurt
 Package::SensorsRoomba
@@ -623,19 +596,23 @@ Package::SensorsRoomba
 
 *+ getInfoSensor(): Object*
 *+ eventDetection(e: Environment): boolean*
-- circleDust(r: Robot, e: Environment): boolean
+- isDirty(r: Robot, e: Environment): boolean
 bg=pink</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>852</x>
-      <y>522</y>
-      <w>18</w>
-      <h>510</h>
+      <x>644</x>
+      <y>332</y>
+      <w>12</w>
+      <h>356</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
+
+
+
+
 n
 
 
@@ -684,26 +661,26 @@ n
 
 
 </panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;830.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;870.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>708</x>
-      <y>522</y>
-      <w>18</w>
-      <h>144</h>
+      <x>556</x>
+      <y>332</y>
+      <w>12</w>
+      <h>92</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;220.0;10.0;10.0</additional_attributes>
+    <additional_attributes>10.0;210.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>462</x>
-      <y>24</y>
-      <w>486</w>
-      <h>294</h>
+      <x>408</x>
+      <y>0</y>
+      <w>324</w>
+      <h>196</h>
     </coordinates>
     <panel_attributes>Simulation
 Package::SimuRoomba
@@ -743,10 +720,10 @@ Package::SimuRoomba
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>570</x>
-      <y>312</y>
-      <w>18</w>
-      <h>54</h>
+      <x>480</x>
+      <y>192</y>
+      <w>12</w>
+      <h>36</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
 
@@ -758,33 +735,36 @@ Package::SimuRoomba
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>756</x>
-      <y>312</y>
-      <w>18</w>
-      <h>60</h>
+      <x>604</x>
+      <y>192</y>
+      <w>12</w>
+      <h>36</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
 
 n
 
 </panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;80.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;70.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>372</x>
-      <y>762</y>
-      <w>126</w>
-      <h>66</h>
+      <x>316</x>
+      <y>524</y>
+      <w>144</w>
+      <h>64</h>
     </coordinates>
     <panel_attributes>/Shape/
 Package::ShapeObjects
 
 --
 - size: double
+- pos: Pos
+- name: String
 --
 /+display()/
+/+isTouching(px: double, py: double): boolean/
 
 bg=blue</panel_attributes>
     <additional_attributes/>
@@ -792,10 +772,10 @@ bg=blue</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>210</x>
-      <y>714</y>
-      <w>126</w>
-      <h>54</h>
+      <x>136</x>
+      <y>476</y>
+      <w>156</w>
+      <h>44</h>
     </coordinates>
     <panel_attributes>Circle
 Package::ShapeObjects
@@ -803,6 +783,7 @@ Package::ShapeObjects
 --
 --
 *+display()*
+*+isTouching(px: double, py: double): boolean*
 
 bg=blue</panel_attributes>
     <additional_attributes/>
@@ -810,10 +791,10 @@ bg=blue</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>210</x>
-      <y>834</y>
-      <w>126</w>
-      <h>54</h>
+      <x>136</x>
+      <y>572</y>
+      <w>160</w>
+      <h>44</h>
     </coordinates>
     <panel_attributes>Polygon
 Package::ShapeObjects
@@ -821,6 +802,7 @@ Package::ShapeObjects
 --
 --
 *+display()*
+*+isTouching(px: double, py: double): boolean*
 
 bg=blue</panel_attributes>
     <additional_attributes/>
@@ -828,32 +810,32 @@ bg=blue</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>330</x>
-      <y>816</y>
-      <w>54</w>
-      <h>48</h>
+      <x>292</x>
+      <y>560</y>
+      <w>32</w>
+      <h>44</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>70.0;10.0;10.0;60.0</additional_attributes>
+    <additional_attributes>60.0;10.0;10.0;90.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>330</x>
-      <y>738</y>
-      <w>54</w>
-      <h>48</h>
+      <x>288</x>
+      <y>500</y>
+      <w>36</w>
+      <h>40</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>70.0;60.0;10.0;10.0</additional_attributes>
+    <additional_attributes>70.0;80.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>210</x>
-      <y>774</y>
-      <w>126</w>
-      <h>54</h>
+      <x>136</x>
+      <y>524</y>
+      <w>156</w>
+      <h>44</h>
     </coordinates>
     <panel_attributes>Square
 Package::ShapeObjects
@@ -861,6 +843,7 @@ Package::ShapeObjects
 --
 --
 *+display()*
+*+isTouching(px: double, py: double): boolean*
 
 bg=blue</panel_attributes>
     <additional_attributes/>
@@ -868,10 +851,24 @@ bg=blue</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>330</x>
-      <y>786</y>
-      <w>54</w>
-      <h>18</h>
+      <x>424</x>
+      <y>492</y>
+      <w>12</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
+
+1
+</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;80.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>288</x>
+      <y>540</y>
+      <w>36</w>
+      <h>12</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
     <additional_attributes>70.0;10.0;10.0;10.0</additional_attributes>

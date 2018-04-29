@@ -1,11 +1,8 @@
 package SensorsRoomba;
 
 import ObjectOnMap.Durt;
-import ObjectOnMap.OnMap;
 import SimuRoomba.Robot;
 import SimuRoomba.Environment;
-
-//TODO Finir la classe SensorDurt !!! EventDetection identique à celle de sensorBump
 
 /**
  * Class which represents dust sensors on the robot
