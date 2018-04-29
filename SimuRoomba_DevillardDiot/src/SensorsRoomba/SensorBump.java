@@ -8,7 +8,6 @@ import SimuRoomba.Environment;
 /**
  * A bump sensor (SensorObst) detected an obstacle by touching it : distance
  * returned is 0
- * 
  * @author Alexis Devillard and Tiphaine Diot
  * 
  */
@@ -43,7 +42,7 @@ public class SensorBump extends SensorObst {
 	public Object getInfoSensor() {	return this.bumping;	}
 
 	/**
-	 * Function calling the bumping functions for each shape
+	 * Function calling the bumping function
 	 */
 	public boolean eventDetection(Environment env) {
 		bumping = isBumping(this.myRob, env);
@@ -51,7 +50,7 @@ public class SensorBump extends SensorObst {
 	}
 
 	/**
-	 * isBumpingCircle() is a function which permits to know if the robot has
+	 * isBumping() is a function which permits to know if the robot has
 	 * bumped on a circular obstacle
 	 */
 	private boolean isBumping(Robot rob, Environment env) 

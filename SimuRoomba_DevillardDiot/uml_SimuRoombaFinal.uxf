@@ -34,9 +34,9 @@ bg=red</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>584</x>
-      <y>756</y>
+      <y>748</y>
       <w>132</w>
-      <h>88</h>
+      <h>96</h>
     </coordinates>
     <panel_attributes>/Sensor/
 Package::SensorsRoomba
@@ -47,6 +47,7 @@ Package::SensorsRoomba
 - flag: boolean
 - detectZone: int[]
 - myRob: Robot
+- shape: Shape
 
 --
 
@@ -60,10 +61,10 @@ bg=pink</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>184</x>
+      <x>196</x>
       <y>636</y>
-      <w>268</w>
-      <h>72</h>
+      <w>256</w>
+      <h>64</h>
     </coordinates>
     <panel_attributes>SensorBump
 Package::SensorsRoomba
@@ -74,8 +75,7 @@ Package::SensorsRoomba
 
 *+ getInfoSensor(): Object*
 *+ eventDetection(e: Environment): boolean*
-- isBumpingCircle(r: Robot, e: Environment, obCircle: ArrayList&lt;Obstacle&gt;): boolean
-- isBumpingSquare(r: Robot, e: Environment, obSquare: ArrayList&lt;Obstacle&gt;): boolean
+- isBumping(r: Robot, e: Environment, obCircle: ArrayList&lt;Obstacle&gt;): boolean
 
 bg=pink</panel_attributes>
     <additional_attributes/>
@@ -83,10 +83,10 @@ bg=pink</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>184</x>
-      <y>716</y>
-      <w>268</w>
-      <h>72</h>
+      <x>196</x>
+      <y>704</y>
+      <w>256</w>
+      <h>64</h>
     </coordinates>
     <panel_attributes>SensorLaser
 Package::SensorsRoomba
@@ -97,9 +97,7 @@ Package::SensorsRoomba
 
 *+ getInfoSensor(): Object*
 *+ eventDetection(e: Environment): boolean*
-- detectingCircle(r: Robot, e: Environment, obCircle: ArrayList&lt;Obstacle&gt;): boolean
-- detectingSquare(r: Robot, e: Environment, obSquare: ArrayList&lt;Obstacle&gt;): boolean
-
+- detectingObst(r: Robot, e: Environment, obCircle: ArrayList&lt;Obstacle&gt;): boolean
 
 bg=pink</panel_attributes>
     <additional_attributes/>
@@ -108,7 +106,7 @@ bg=pink</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>612</x>
-      <y>736</y>
+      <y>728</y>
       <w>12</w>
       <h>28</h>
     </coordinates>
@@ -119,18 +117,18 @@ bg=pink</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>448</x>
-      <y>720</y>
+      <y>712</y>
       <w>80</w>
-      <h>56</h>
+      <h>52</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>180.0;10.0;10.0;120.0</additional_attributes>
+    <additional_attributes>180.0;10.0;10.0;110.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
       <x>448</x>
-      <y>652</y>
+      <y>644</y>
       <w>80</w>
       <h>56</h>
     </coordinates>
@@ -290,7 +288,7 @@ Package::SimuRoomba
     <id>Relation</id>
     <coordinates>
       <x>680</x>
-      <y>736</y>
+      <y>728</y>
       <w>12</w>
       <h>28</h>
     </coordinates>
@@ -502,7 +500,7 @@ n
       <x>664</x>
       <y>332</y>
       <w>12</w>
-      <h>356</h>
+      <h>348</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
 
@@ -557,13 +555,13 @@ n
 
 
 </panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;870.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;850.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
       <x>520</x>
-      <y>680</y>
+      <y>672</y>
       <w>140</w>
       <h>60</h>
     </coordinates>
@@ -584,7 +582,7 @@ bg=pink</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>664</x>
-      <y>680</y>
+      <y>672</y>
       <w>156</w>
       <h>60</h>
     </coordinates>
@@ -606,7 +604,7 @@ bg=pink</panel_attributes>
       <x>644</x>
       <y>332</y>
       <w>12</w>
-      <h>356</h>
+      <h>348</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
 
@@ -661,7 +659,7 @@ n
 
 
 </panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;870.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;850.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
@@ -753,7 +751,7 @@ n
       <x>316</x>
       <y>524</y>
       <w>144</w>
-      <h>64</h>
+      <h>68</h>
     </coordinates>
     <panel_attributes>/Shape/
 Package::ShapeObjects
@@ -765,6 +763,8 @@ Package::ShapeObjects
 --
 /+display()/
 /+isTouching(px: double, py: double): boolean/
+/+isTouching(s: Shape): boolean/
+
 
 bg=blue</panel_attributes>
     <additional_attributes/>
@@ -773,9 +773,9 @@ bg=blue</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>136</x>
-      <y>476</y>
+      <y>468</y>
       <w>160</w>
-      <h>44</h>
+      <h>48</h>
     </coordinates>
     <panel_attributes>Circle
 Package::ShapeObjects
@@ -784,6 +784,7 @@ Package::ShapeObjects
 --
 *+display()*
 *+isTouching(px: double, py: double): boolean*
+*+isTouching(s: Shape): boolean*
 
 bg=blue</panel_attributes>
     <additional_attributes/>
@@ -794,7 +795,7 @@ bg=blue</panel_attributes>
       <x>136</x>
       <y>572</y>
       <w>160</w>
-      <h>44</h>
+      <h>48</h>
     </coordinates>
     <panel_attributes>Polygon
 Package::ShapeObjects
@@ -803,6 +804,7 @@ Package::ShapeObjects
 --
 *+display()*
 *+isTouching(px: double, py: double): boolean*
+*+isTouching(s: Shape): boolean*
 
 bg=blue</panel_attributes>
     <additional_attributes/>
@@ -822,20 +824,20 @@ bg=blue</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>292</x>
-      <y>500</y>
+      <y>496</y>
       <w>32</w>
-      <h>40</h>
+      <h>44</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>60.0;80.0;10.0;10.0</additional_attributes>
+    <additional_attributes>60.0;90.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
       <x>136</x>
-      <y>524</y>
+      <y>520</y>
       <w>160</w>
-      <h>44</h>
+      <h>48</h>
     </coordinates>
     <panel_attributes>Square
 Package::ShapeObjects
@@ -844,6 +846,7 @@ Package::ShapeObjects
 --
 *+display()*
 *+isTouching(px: double, py: double): boolean*
+*+isTouching(s: Shape): boolean*
 
 bg=blue</panel_attributes>
     <additional_attributes/>

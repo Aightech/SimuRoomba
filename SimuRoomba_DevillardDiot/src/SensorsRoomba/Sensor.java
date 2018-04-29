@@ -10,7 +10,7 @@ import ShapeObjects.*;
 /**
  * Abstract class representing a sensor
  * 
- * @author Alexis Devillard and Tiphaine Diot Attributs: posOnRob, flag,
+ * @author Alexis Devillard and Tiphaine Diot, Attributes: posOnRob, flag,
  *         detectZone; Functions : constructor, getters/setters Abstracts
  *         Functions : getInfoSensor() and eventDetection()
  */

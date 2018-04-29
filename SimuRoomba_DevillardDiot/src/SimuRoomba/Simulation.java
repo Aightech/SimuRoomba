@@ -94,11 +94,11 @@ public class Simulation extends JPanel implements ActionListener{
 	}
 	
 	
-/**
- * Costructor
- * @param env Environement of the simualtion
- * @param gui True for a graphical mode, false for a terminal mode
- */
+	/**
+	 * Costructor
+	 * @param env Environement of the simualtion
+	 * @param gui True for a graphical mode, false for a terminal mode
+	 */
 	 public Simulation(Environment env,boolean gui)
 	 {
 		 this.myEnv = env;
@@ -266,7 +266,9 @@ public class Simulation extends JPanel implements ActionListener{
 	 
 	 
 	 
-	 
+	 /**
+	  * Classe pour la simulation via un thread
+	  */
 	 
 	 public class Controller extends Thread {
 
@@ -318,8 +320,8 @@ public class Simulation extends JPanel implements ActionListener{
 	  
 	  
 	  @Override
-		public void actionPerformed(ActionEvent e) 
-		{
+	  public void actionPerformed(ActionEvent e) 
+	  {
 			//On regarde d'abord si on a cliqué sur un nombre
 			for(int i = 0; i<3; i++)
 				if(e.getSource() == this.onMapButtons[i])
@@ -329,5 +331,5 @@ public class Simulation extends JPanel implements ActionListener{
 			for(int i = 0; i<3; i++)
 				if(e.getSource() == this.behaviorButtons[i])
 					setBehavior(i);
-		}
+	  }
 }

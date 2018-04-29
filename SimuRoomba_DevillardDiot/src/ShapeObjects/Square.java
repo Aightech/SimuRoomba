@@ -21,6 +21,10 @@ public class Square extends Shape {
 		g2.fillRect((int)(pos.getX()-size/2),(int)( pos.getY()-size/2),(int)size,(int)size);
 
 	}
+	
+	/**
+	 * Classe pour détecter un rectangle à mettre en place
+	 */
 	@Override
 	public boolean isTouching(double px, double py) {
 		return false;

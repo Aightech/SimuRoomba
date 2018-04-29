@@ -7,7 +7,7 @@ import SimuRoomba.Environment;
 /**
  * Abstract class representing a behavior
  * 
- * @author Alexis Devillard and Tiphaine Diot Attribute : name - code name for
+ * @author Alexis Devillard and Tiphaine Diot, Attributes : name - code name for
  *         the behavior Functions in the Behavior Class : setName() and
  *         getName() - getter and setter Abstract functions : generateNext()
  */

@@ -7,7 +7,6 @@ import SimuRoomba.Environment;
 
 /**
  * Class which represents dust sensors on the robot
- * 
  * @author Alexis Devillard and Tiphaine Diot
  * 
  */
