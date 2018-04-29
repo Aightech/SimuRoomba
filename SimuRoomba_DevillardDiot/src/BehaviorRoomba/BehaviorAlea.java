@@ -74,4 +74,8 @@ public class BehaviorAlea extends Behavior {
 							// continue
 		return newPos; // Return the pos which doesn't raise the flag
 	}
+	
+	public String toString(){
+		return "Comportement du robot aléatoire"; 
+	}
 }

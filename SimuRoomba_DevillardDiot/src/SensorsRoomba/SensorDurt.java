@@ -9,7 +9,6 @@ import SimuRoomba.Environment;
 
 /**
  * Class which represents dust sensors on the robot
- * 
  * @author Alexis Devillard and Tiphaine Diot
  * 
  */
@@ -20,26 +19,14 @@ public class SensorDurt extends Sensor {
 	 */
 
 	public SensorDurt(Robot r) {
-		/*
-		 * this.detectZone[0] = 5; //rayon de détection de 5 cm autour de son
-		 * centre this.posOnRob[0] = 15; //Pos selon le repère du robot, X dans
-		 * l'axe des roues et Y perpendiculaire this.posOnRob[1] = 0;
-		 * this.posOnRob[2] = 0; //The angle of view of the sensor is null for
-		 * an basic sensor bump - aligned with the angle of the robot
-		 */
+		super((double) 0, r.getSize(), (double) 0);
+		this.myRob = r;
+		this.posOnRob.set((double) 0, (double) 0, (double) 0); //A VERIFIER
 	}
 
 	public SensorDurt(Robot r, double anglOnRob, int detectRange,
 			double distFromCtr) {
-		/*
-		 * this.detectZone[0] = detectRange; //the bump sensor detects one
-		 * obstacle by touching it. this.posOnRob[0] =
-		 * distFromCtr*Math.cos(anglOnRob); //Pos selon le repère du robot, X
-		 * dans l'axe des roues et Y perpendiculaire this.posOnRob[1] =
-		 * distFromCtr*Math.sin(anglOnRob); this.posOnRob[2] = anglOnRob; //The
-		 * angle of view of the sensor is null for an basic sensor bump -
-		 * aligned with the angle of the robot
-		 */
+		//TODO
 	}
 
 	@Override
@@ -79,9 +66,18 @@ public class SensorDurt extends Sensor {
 				Durt drt = env.getDurt(i);
 				if (Math.hypot(ptx - drt.getPos().getX(), pty
 						- drt.getPos().getY()) < drt.getSize() / 2)
+					this.flag = true;
 					return true;
 			}
 		}
+		this.flag = false; 
 		return false;
+	}
+	
+	public String toString(){
+		if(this.flag)
+			return "Poussière détectée : oui \n";
+		else
+			return "Poussière détectée : non \n";
 	}
 }

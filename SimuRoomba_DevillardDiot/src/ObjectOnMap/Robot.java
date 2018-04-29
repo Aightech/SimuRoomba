@@ -139,5 +139,12 @@ public class Robot extends OnMap {
 		this.posOnMap = this.behavior.generateNext(this, e);
 		return this.posOnMap;
 	}
+	
+	/**
+	 * Methode toString: permet d'afficher la position du robot sur la carte
+	 */
+	public String toString() {
+			return "Robot pos:" + this.posOnMap.toString();
+	}
 
 }
