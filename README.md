@@ -23,13 +23,9 @@ Pour que l'affichage ne lague pas, nous lui avons intégré une classe permettan
 
 Pour que notre projet soit plus modulable, nous avons essayé de créer des packages par grande catégorie. Ainsi pour ajouter des fonctionnalités, il faut créer une nouvelle classe dans le package adapté et l'importer dans les autres où il sera utiliser. 
 
-L'ajout de fonctionnalités peut être plus ou moins difficiles. 
-Notamment, il faut noter que des ajouts par exemple de formes pour les obstacles vont avoir des impacts dans plusieurs packages. En effet, si on ajoute à un obstacle la possibilité d'être un polygone, il faut s'assurer que les capteurs d'obstacles soient capables de le détecter. 
-Contraitement aux ajouts de comportements qui sont très peu utilisés à d'autres endroits. 
-
 ### Les comportements
 
-Pour qu'un nouveau comportement soit pris en compte il faut lui donner un nom et lui crée sa classe. Il doit alors hérité de la classe Behavior et ainsi posséder au moins la fonction generateNext() qui permet de générer la nouvelle position. 
+Pour qu'un nouveau comportement soit pris en compte il faut lui donner un nom et lui crée sa classe. Il doit alors hérité de la classe _Behavior_ et ainsi posséder au moins la fonction _generateNext()_ qui permet de générer la nouvelle position.  
 
 ### Les capteurs
 
@@ -50,33 +46,24 @@ Les capteurs d'obstacles sont des capteurs de distances. De manière simple ils 
 
 Du fait qu'ils existent de nombreux types de capteurs de distances comme les capteurs lasers, ou les capteurs de contacts par exemple, ils offrent beaucoup plus de possibilités que les capteurs de poussières. Ces différents types sont considérés comme des dérivées de la notion de capteurs d'obstacles. Pour cela nous avons mis la classe SensorObst en abstraite. 
 
-Rajouter un type de capteurs de distance est assez simple, il suffit de créer un package le représentant et héritant de la classe SensorObst. 
+Rajouter un type de capteurs de distance est assez simple, il suffit de créer un package le représentant et héritant de la classe _SensorObst_. 
 Il faut ensuite gérer les différentes formes existant dans la simulation pour que le capteur soit correctement adapté à la simulation. 
 
 ### Les objets sur la carte
 
 Nous avons considéré que les obstacles et les poussières sont les deux types d'objets présents dans l'environnement (mis à part le robot et les murs).
-Cependant nous avons pris le parti de différencier ces deux classes (même si elles héritent toutes deux de la même classe OnMap) pour faciliter l'implémentation dans l'environnement, en effet celui ci connait indépendamment ses obstacles de ses zones de poussières. 
+Cependant nous avons pris le parti de différencier ces deux classes (même si elles héritent toutes deux de la même classe _OnMap_) pour faciliter l'implémentation dans l'environnement, en effet celui ci connait indépendamment ses obstacles de ses zones de poussières. 
 L'unique différence entre les deux est que les obstacles sont simuler en vert et les poussières en gris. 
 
 #### Ajout de formes
 
-Les formes sont placées dans un package particulier, elles doivent toutes héritées de la classe abstraite Shape. 
-Ajouter des formes aux obstacles et aux zones de poussières est une modification plus importante que les précédentes citées précédemment. 
+Les formes doivent héritées de la classe _Shape_. Chaque nouvelle forme doit posséder une fonction _display()_ pour son affichage et une fonction qui permet de détecter ses limites (_istouching()_).
 
-En effet,  en ajoutant une classe forme il faut alors lui écrire une fonction display() mais également faire en sorte que tous les types de capteurs puissent les détecter. 
-
-
-
-// La classe OnMap utilise la classe abstraite Shape. En effet, les obstacles (et les poussières!) ont une forme particulière. 
-
-
-//Il est possible d'ajouter des formes, dans ce cas les fonctionnalités des capteurs doivent être complétées en ajoutant une méthode //private dans chaque capteurs permet de détecter ses formes et de rajouter un cas ou switch case de la méthode eventDetect(). 
- 
+Cette dernière fonction est importante car elle permet aux différents capteurs d'appeler cette méthode pour vérifier s'il y a eu contact avec un obstacle ou si le robot se trouve sur de la poussière par exemple. Les capteurs alors ne se préoccupent pas de la forme à détecter vu que chaque objet possède sa fonction de détection propre. 
 
 ## Ce qu'on aurait aimé ajouter
 
-Nous avons apprécié le fait de pouvoir utiliser un thread en Java. 
+Nous avons apprécié le fait de pouvoir utiliser un thread en Java car nous n'avions pas découvert cette possibilité avant. Le principe de simuler le comportement d'un robot assez simple c'est révélé assez compliqué et nous avons apprécié que le projet soit lié à la robotique directement. 
 
-Nous aurions aimé pouvoir ajouter au robot au moins un autre comportement plus intelligent que le comportement aléatoire et éventuellement implémenter un autre capteur de distance. 
+Nous aurions aimé pouvoir ajouter au robot au moins un autre comportement plus intelligent que le comportement aléatoire et éventuellement implémenter un autre capteur de distance. De plus nous aurions aimé implémenter la fonction de détection des carrés.
 
