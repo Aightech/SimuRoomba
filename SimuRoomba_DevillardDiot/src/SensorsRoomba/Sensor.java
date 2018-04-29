@@ -27,11 +27,11 @@ public abstract class Sensor {
 	// default constructor, constructor with a specified position,
 	// getters/setters
 	public Sensor() {
-		Pos posOnRob = new Pos(0, 0, 0);
+		this.posOnRob = new Pos(0, 0, 0);
 	}
 
 	public Sensor(double px, double py, double ptheta) {
-		Pos posOnRob = new Pos(px, py, ptheta);
+		this.posOnRob = new Pos(px, py, ptheta);
 	}
 
 	public void setPos(Pos p) {

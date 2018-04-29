@@ -1,8 +1,11 @@
-package SimuRoomba;
+package Tests;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
+
+import SimuRoomba.Environment;
+import SimuRoomba.Robot;
 
 /**
  * Classe de tests pour le robot

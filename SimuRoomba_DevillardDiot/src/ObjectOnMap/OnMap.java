@@ -12,13 +12,6 @@ import ShapeObjects.*;
  * 
  */
 public abstract class OnMap {
-
-	/**
-	 * The differents shape a OnMap can have
-	 */
-	public static String[] shapes = new String[] { "Circle", "Square",
-			"Polygon" };
-
 	/**
 	 * The position of the OnMap on the map
 	 */
@@ -28,11 +21,6 @@ public abstract class OnMap {
 	 * The shape of the OnMap
 	 */
 	protected Shape shape;
-
-	/**
-	 * The size of the Onmap (diameter for a circle, length for a square)
-	 */
-	//protected double size;
 
 	/**
 	 * The color of the object
@@ -68,29 +56,16 @@ public abstract class OnMap {
 	/**
 	 * Methods : getters, setters, main
 	 */
-	public void setPos(Pos p) {
-		this.posOnMap = p;
-	}
+	public void setPos(Pos p) {	this.posOnMap = p;	}
 
-	public Pos getPos() {
-		return posOnMap;
-	}
+	public Pos getPos() {	return posOnMap;	}
 
-	public Shape getShape() {
-		return this.shape;
-	}
+	public Shape getShape() {	return this.shape;	}
 
-	public void setShape(Shape s) {
-		this.shape = s;
-	}
+	public void setShape(Shape s) {	this.shape = s;	}
 
-	public Color getColor() {
-		return this.color;
-	} 
+	public Color getColor() {	return this.color;	} 
 	
-	public void display(Graphics g)
-	{
-		this.shape.display(g,this.color);
-	}
+	public void display(Graphics g){	this.shape.display(g,this.color);	}
 
 }

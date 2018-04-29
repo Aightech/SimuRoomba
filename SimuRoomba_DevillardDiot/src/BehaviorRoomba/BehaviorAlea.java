@@ -30,9 +30,7 @@ public class BehaviorAlea extends Behavior {
 	}
 
 	// Constructor
-	public BehaviorAlea() {
-		this.setName("alea");
-	}
+	public BehaviorAlea() {	this.setName("alea");	}
 
 	/**
 	 * Function which generate a new random position from the last one Using
@@ -46,27 +44,21 @@ public class BehaviorAlea extends Behavior {
 		Pos newPos = rob.getPos();
 
 		boolean bumping = false; // Flag for bumping on something
-		// double lastSpeed[] = new double[] {rob.getSpeed(0),rob.getSpeed(1)};
 
 		do {
-			rob.getPos()
-					.set(lastPos.getX(), lastPos.getY(), lastPos.getTheta());
+			rob.getPos().set(lastPos.getX(), lastPos.getY(), lastPos.getTheta());
 			double v = 0;
-			for (int i = 0; i < 2; i++) // Generate a random speed for both
-										// wheels
+			for (int i = 0; i < 2; i++) // Generate a random speed for both wheels
 			{
-				// rob.setSpeed(i,lastSpeed[i]);
 				v = rob.getSpeed(i) + (Math.random() - 0.5)*0.1;
 				v = (Math.abs(v) > rob.getMaxSpeed()) ? rob.getMaxSpeed() : v;
 				rob.setSpeed(i, v);
 			}
 
 			newPos = rob.move(env.getSampleTime());
-			for (int i = 0; i < rob.nbObstSensor(); i++) // Check all the
-															// obstacles sensors
+			for (int i = 0; i < rob.nbObstSensor(); i++) // Check all the obstacles sensors
 			{
 				bumping = rob.getObstSensor(i).eventDetection(env);
-
 				if (bumping)
 					break;
 			}
@@ -75,7 +67,5 @@ public class BehaviorAlea extends Behavior {
 		return newPos; // Return the pos which doesn't raise the flag
 	}
 	
-	public String toString(){
-		return "Comportement du robot aléatoire"; 
-	}
+	public String toString(){	return "Comportement du robot aléatoire"; }
 }

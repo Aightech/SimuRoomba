@@ -23,5 +23,6 @@ public abstract class Shape {
 	public double getSize(){	return this.size;	}
 	public String getName(){	return this.name;	}
 	public abstract void display(Graphics g, Color color);
+	
 	public abstract boolean isTouching(double px, double py);
 }

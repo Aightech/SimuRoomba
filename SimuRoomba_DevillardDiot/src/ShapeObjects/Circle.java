@@ -6,6 +6,8 @@ import java.awt.Graphics2D;
 import ObjectOnMap.Pos;
 
 public class Circle extends Shape {
+	
+	public Circle(){}
 
 	public Circle(Pos position, double psize)
 	{
@@ -22,7 +24,7 @@ public class Circle extends Shape {
 	}
 	@Override
 	public boolean isTouching(double px, double py) {
-		 if(Math.hypot(px - this.pos.getX(), py- this.pos.getY()) < this.size / 2)
+		 if(Math.hypot(px - this.pos.getX(), py- this.pos.getY()) <= this.size / 2)
 			 return true;
 		 else
 			 return false;

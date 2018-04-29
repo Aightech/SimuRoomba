@@ -37,9 +37,10 @@ public class Environment {
 
 	}
 
-	
 	public int getWidth(){ return this.dim[0];}
+	
 	public int getHeigth(){ return this.dim[1];}
+	
 	public double getSampleTime(){return this.sampleTime;}
 	
 	public void setSampleTime(double dt){	this.sampleTime = dt;	}
@@ -51,7 +52,6 @@ public class Environment {
 	public Obstacle getObst(int i){	return this.obstacles.get(i);	}
 	
 	public int nbObst(){	return this.obstacles.size();	}
-	
 
 	public void addDurt(Durt d){	this.durts.add(d);	}
 	
@@ -60,7 +60,6 @@ public class Environment {
 	public Durt getDurt(int i){	return this.durts.get(i);	}	
 	
 	public int nbDurt(){	return this.durts.size();	}
-
 
 	public String toString(){
 		return "Environnement information: taille(" + this.getWidth() + "x" + this.getHeigth() + ") | nb Obstacles: " + this.nbObst() + " | nb Dust:" + this.nbDurt();
