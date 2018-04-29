@@ -23,5 +23,11 @@ public class Obstacle extends OnMap {
 		super(px, py, 0, 20);
 		this.color = Color.green;
 	}
+	
+	public String toString() {
+		return "Info obstacle:  Pos" + this.posOnMap.toString() + " | taille: 20 | Forme: " + this.shape;
+	}
 
 }
+
+

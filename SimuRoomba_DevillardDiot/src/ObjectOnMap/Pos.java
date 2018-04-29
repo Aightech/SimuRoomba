@@ -114,8 +114,8 @@ public class Pos implements Cloneable {
 	 * Methode toString: permet d'afficher la posture
 	 */
 	public String toString() {
-		return "x:" + (int) x + "| y:" + (int) y + "| theta:"
-				+ (int) ((180 * theta) / Math.PI) % 360 + "°";
+		return "(x:" + (int) x + "| y:" + (int) y + "| theta:"
+				+ (int) ((180 * theta) / Math.PI) % 360 + "°)";
 	}
 
 	/**

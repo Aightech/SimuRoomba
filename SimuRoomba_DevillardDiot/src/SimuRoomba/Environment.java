@@ -62,4 +62,7 @@ public class Environment {
 	public int nbDurt(){	return this.durts.size();	}
 
 
+	public String toString(){
+		return "Environnement information: taille(" + this.getWidth() + "x" + this.getHeigth() + ") | nb Obstacles: " + this.nbObst() + " | nb Dust:" + this.nbDurt();
+	}
 }

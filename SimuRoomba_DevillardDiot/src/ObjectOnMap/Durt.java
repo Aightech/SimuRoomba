@@ -22,4 +22,10 @@ public class Durt extends OnMap {
 		super(px, py, 0, 10);
 		this.color = Color.gray;
 	}
+	
+	public String toString() {
+		return "Info poussière:  Pos" + this.posOnMap.toString() + " | taille: 10 | Forme: " + this.shape ;
+	}
+
 }
+
