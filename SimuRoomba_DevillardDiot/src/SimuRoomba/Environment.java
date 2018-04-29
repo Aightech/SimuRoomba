@@ -17,7 +17,6 @@ public class Environment {
 	protected ArrayList<Obstacle> obstacles;
 	protected ArrayList<Durt> durts;
 	protected int[] dim;
-	protected int[][] mapEnv; 
 	protected double sampleTime;
 	
 	
@@ -29,7 +28,6 @@ public class Environment {
 		this.dim[0]=pwidth;
 		this.dim[1]=pheight;
 		
-		this.mapEnv = new int[pheight][pwidth];
 		
 		this.obstacles = new ArrayList<Obstacle>();
 		this.durts = new ArrayList<Durt>();
@@ -40,13 +38,8 @@ public class Environment {
 	public int getHeigth(){ return this.dim[1];}
 	public double getSampleTime(){return this.sampleTime;}
 	
-	public void setSampleTime(double dt)
-	{
-		this.sampleTime = dt;
-	}
+	public void setSampleTime(double dt){	this.sampleTime = dt;	}
 	
-	
-
 	public void addObst(Obstacle o){	this.obstacles.add(o);	}
 	
 	public void delObst(int i){	this.obstacles.remove(i);	}
@@ -63,16 +56,6 @@ public class Environment {
 	public Durt getDurt(int i){	return this.durts.get(i);	}	
 	
 	public int nbDurt(){	return this.durts.size();	}
-	
-	public void setMat()
-	{
-		
-	}
-	public int[][] getMat()
-	{
-		return mapEnv;
-		
-	}
 
 
 }

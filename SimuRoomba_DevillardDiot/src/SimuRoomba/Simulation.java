@@ -27,10 +27,7 @@ public class Simulation extends JPanel implements ActionListener{
 
 	private static final long serialVersionUID = 1L;
 	
-	/**
-	 * Boolean to switch from a GUI or Terminal simulation
-	 */
-	public boolean graphicInterface;
+	
 	
 	/**
 	 * Environment of the simulation: containing the dim of the room and the different obstacles and durts
@@ -70,6 +67,9 @@ public class Simulation extends JPanel implements ActionListener{
 	private JButton behaviorButtons[];
 	private String behaviorType[] = {"Random","Around","Clever"};
 	
+	/**
+	 * Boolean to switch from a GUI or Terminal simulation
+	 */
 	private boolean GUIactive=false;
 	
 	
@@ -100,10 +100,10 @@ public class Simulation extends JPanel implements ActionListener{
 	 public Simulation(Environment env,boolean gui)
 	 {
 		 this.myEnv = env;
+		 this.GUIactive = gui;
 		 if(gui)
 		 {
 			 this.GUI = new Controller(this);
-			 this.GUIactive = true;
 			 this.initGUI();
 		}
 	 }
@@ -149,8 +149,12 @@ public class Simulation extends JPanel implements ActionListener{
 	 
 	 public void addBot(Robot rob){	this.myBots.add(rob);	}
 	 
+	 /**
+	  * Inits the simulation and launch the main loop
+	  */
 	 public void start()
 	 {
+		 //if the graphical mode is activated 
 		 if(this.GUIactive)
 			 this.GUI.start();
 		
@@ -162,7 +166,9 @@ public class Simulation extends JPanel implements ActionListener{
 		 
 	 }
 	 
-	 
+	 /**
+	  * Set the elapsed time beetween 2 update and update each robot of the simulation
+	  */
 	 public void update()
 	 {
 		 double dt = (System.nanoTime() - this.time) / 1e9;
@@ -176,6 +182,9 @@ public class Simulation extends JPanel implements ActionListener{
 		 System.out.print("\n");
 	 }
 	 
+	 /**
+	  * Setup all the GUI objects
+	  */
 	 public void initGUI()
 	 {
 			 setBackground(Color.white);

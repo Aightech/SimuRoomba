@@ -12,18 +12,20 @@ import java.util.ArrayList;
 public class Robot extends OnMap{
 	
 	/**
+	 * Diametre des roues.
+	 */
+	protected double wheelSize = 8;
+	
+	/**
 	 * Tableau de la vitesse de rotation de la roue droite et de la roue gauche
 	 */
 	protected double speed[];
 	/**
-	 * La vitesse de rotation maximal des deux roues (1m/s)
+	 * La vitesse de rotation maximal des deux roues (1m/s==> 1/(2piR) ~= 5tr/s)
 	 */
-	protected double maxSpeed = 100;
+	protected double maxSpeed = 100/Math.PI/this.wheelSize;
 	
-	/**
-	 * Diametre des roues.
-	 */
-	protected double wheelSize = 8;
+	
 	
 	/**
 	 * Le comportement du robot.
@@ -63,16 +65,16 @@ public class Robot extends OnMap{
 	 */
 	public Pos move(double dt)
 	{
-		double vm = wheelSize*(speed[0]+speed[1])/2;
+		double vm = wheelSize*Math.PI*(speed[0]+speed[1])/2;
 		double thetap = wheelSize/size*(speed[0]-speed[1]);
 		double x=posOnMap.getX();
 		double y=posOnMap.getY();
 		double theta = posOnMap.getTheta();
-		
+		//System.out.println(vm);
 		if(thetap > 1e-20  || thetap < -1e-20)
 		{
 			theta +=  thetap*dt;
-			System.out.println(posOnMap.getX());
+			
 			y += vm/thetap*(Math.sin(theta)-Math.sin(posOnMap.getTheta()));
 			x += vm/thetap*(Math.cos(posOnMap.getTheta())-Math.cos(theta));
 		}
@@ -106,6 +108,8 @@ public class Robot extends OnMap{
 	public double getMaxSpeed(){	return this.maxSpeed;	}
 	
 	public Behavior getBehavior(){	return this.behavior;}
+	
+	public double getWheelSize(){	return this.wheelSize;}
 	
 	public Pos generateNext(Environment e)
 	{
