@@ -22,7 +22,9 @@ public abstract class Shape {
 	
 	public double getSize(){	return this.size;	}
 	public String getName(){	return this.name;	}
+	public Pos getPos(){ return this.pos;	}
 	public abstract void display(Graphics g, Color color);
 	
 	public abstract boolean isTouching(double px, double py);
+	public abstract boolean isTouching(Shape shape);
 }

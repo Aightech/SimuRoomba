@@ -15,6 +15,9 @@ public class Circle extends Shape {
 		this.pos = position;
 		this.name = "Circle";
 	}
+	
+	
+	
 	@Override
 	public void display(Graphics g, Color color) {
 		Graphics2D g2 = (Graphics2D) g;
@@ -29,6 +32,17 @@ public class Circle extends Shape {
 		 else
 			 return false;
 		
+	}
+
+	@Override
+	public boolean isTouching(Shape shape) {
+		double dx = shape.getPos().getX() - this.pos.getX();
+		double dy = shape.getPos().getY() - this.pos.getY();
+		double norm = Math.sqrt(dx*dx+dy*dy);
+		dx/=norm;
+		dy/=norm;
+		shape.isTouching(this.size*dx,this.size*dy);
+		return false;
 	}
 
 }

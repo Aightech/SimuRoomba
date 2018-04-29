@@ -1,6 +1,7 @@
 package SensorsRoomba;
 
 import ObjectOnMap.Durt;
+import ShapeObjects.Circle;
 import SimuRoomba.Robot;
 import SimuRoomba.Environment;
 
@@ -19,7 +20,7 @@ public class SensorDurt extends Sensor {
 	public SensorDurt(Robot r) {
 		super((double) 0, r.getShape().getSize(), (double) 0);
 		this.myRob = r;
-		this.posOnRob.set((double) 0, (double) 0, (double) 0);
+		this.shape = new Circle(r.getPos(),5);
 	}
 
 
@@ -33,36 +34,22 @@ public class SensorDurt extends Sensor {
 	 * dirty zone is circular
 	 */
 	public boolean eventDetection(Environment env) {
-		return isDirty(this.myRob, env);
+		this.flag = isDirty(this.myRob, env);
+		return this.flag;
 	}
 
 	/**
 	 * isDirty() return a boolean according the fact the sensor detect dust for circle shape
 	 */
 	private boolean isDirty(Robot rob, Environment env) {
-		double xr = rob.getPos().getX();
-		double yr = rob.getPos().getY();
-		double thetar = rob.getPos().getTheta();
-
-		double dx = this.getPos().getX();
-		double dy = this.getPos().getY();
-
-		double ptx = 0;
-		double pty = 0;
-		double range = Math.toRadians(40);
-		double inc = Math.toRadians(0.5);
-
-		for (double dO = -range; dO < range; dO += inc) {
-			ptx = xr + dx * Math.cos(thetar + dO) + dy * Math.sin(thetar + dO);
-			pty = yr - dx * Math.sin(thetar + dO) + dy * Math.cos(thetar + dO);
-
-			for (int i = 0; i < env.nbDurt(); i++) {
-				Durt drt = env.getDurt(i);
-				this.flag = true;	
+		
+		for (int i = 0; i < env.nbDurt(); i++) 
+		{
+			Durt drt = env.getDurt(i);
+			if(this.shape.isTouching(drt.getShape()) )
 				return true;
-			}
 		}
-		this.flag = false; 
+		
 		return false;
 	}
 	

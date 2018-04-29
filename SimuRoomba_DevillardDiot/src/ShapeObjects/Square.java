@@ -27,5 +27,10 @@ public class Square extends Shape {
 		// TODO Auto-generated method stub
 		
 	}
+	@Override
+	public boolean isTouching(Shape shape) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 
 }

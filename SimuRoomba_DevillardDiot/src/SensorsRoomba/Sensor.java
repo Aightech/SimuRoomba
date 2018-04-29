@@ -1,8 +1,11 @@
 package SensorsRoomba;
 
+
+
 import ObjectOnMap.Pos;
 import SimuRoomba.Robot;
 import SimuRoomba.Environment;
+import ShapeObjects.*;
 
 /**
  * Abstract class representing a sensor
@@ -23,6 +26,8 @@ public abstract class Sensor {
 	protected boolean flag;
 	protected int[] detectZone;
 	protected Robot myRob;
+	
+	protected Shape shape;
 
 	// default constructor, constructor with a specified position,
 	// getters/setters
